@@ -18,7 +18,6 @@ open ./Haxiomic.terminal
 
 Auto-installs several scripts into ~/bash_scripts
 
-[git-completion](https://github.com/git/git/tree/master/contrib/completion)
-
-[z](https://github.com/rupa/z)
+- [git-completion](https://github.com/git/git/tree/master/contrib/completion)
+- [z](https://github.com/rupa/z)
 	 
