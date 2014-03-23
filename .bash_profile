@@ -3,11 +3,12 @@ P="$HOME/Projects"
 PROJECTS=$P
 
 EXTRA_BASH_FILES="$HOME/.bash_scripts"
+EDITOR_OF_CHOICE="Sublime Text 3"
 
 ### Aliases
 # Open specified files in Sublime Text
 # "s ." will open the current directory in Sublime
-alias s='open -b "com.sublimetext.3"'
+alias s='open -a "$EDITOR_OF_CHOICE"'
 alias o='open '
 
 # Color LS
@@ -219,15 +220,24 @@ function parse_git_branch() {
 }
 
 #Git autocomplete script
-if [ -f $EXTRA_BASH_FILES/.git-completion.bash ]; then
- 	. $EXTRA_BASH_FILES/.git-completion.bash
+if [ -f $EXTRA_BASH_FILES/git-completion.bash ]; then
+ 	. $EXTRA_BASH_FILES/git-completion.bash
 else
 	if [ ! -d $EXTRA_BASH_FILES ]; then
 	 	mkdir $EXTRA_BASH_FILES
 	fi
-	curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/.git-completion.bash
-	echo -e "\n${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/.git-completion.bash, restart terminal$RESET"
+	curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/git-completion.bash
+	echo -e "\n${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/git-completion.bash$RESET"
 fi
 
-# init z! (https://github.com/rupa/z)
-#. ~/z.sh
+#Install https://github.com/rupa/z
+if [ -f $EXTRA_BASH_FILES/z.sh ]; then
+ 	. $EXTRA_BASH_FILES/z.sh
+else
+	if [ ! -d $EXTRA_BASH_FILES ]; then
+	 	mkdir $EXTRA_BASH_FILES
+	fi
+	curl https://raw.githubusercontent.com/rupa/z/master/z.sh > $EXTRA_BASH_FILES/z.sh
+	curl https://raw.githubusercontent.com/rupa/z/master/z.1 > $EXTRA_BASH_FILES/z.1
+	echo -e "\n${BOLD}${YELLOW}Z has been installed, see https://github.com/rupa/z for details$RESET"
+fi
