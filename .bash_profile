@@ -1,9 +1,21 @@
-#Projects
+########## User Specific Config ########## 
 P="$HOME/Projects"
 PROJECTS=$P
 
 EXTRA_BASH_FILES="$HOME/.bash_scripts"
 EDITOR_OF_CHOICE="Sublime Text 3"
+
+# Shortcuts to my Code folder in my home directory
+alias haxedir="cd /usr/lib/haxe"
+alias lmac="lime test mac"
+alias lflash="lime test flash"
+alias lhtml="lime test html5"
+alias lios="lime test ios"
+if [ -d $PROJECTS ]; then
+	alias p="cd ~/Projects"
+fi
+
+##########################################
 
 ### Aliases
 # Open specified files in Sublime Text
@@ -29,17 +41,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias back="cd -"
+alias bk=back
 
-# Shortcuts to my Code folder in my home directory
 alias desktop="cd ~/Desktop"
-alias haxedir="cd /usr/lib/haxe"
-alias lmac="lime test mac"
-alias lflash="lime test flash"
-alias lhtml="lime test html5"
-alias lios="lime test ios"
-if [ -d $PROJECTS ]; then
-	alias p="cd ~/Projects"
-fi
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
