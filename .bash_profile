@@ -1,4 +1,6 @@
-PROJECTS="$HOME/Projects"
+#Projects
+P="$HOME/Projects"
+PROJECTS=$P
 
 ### Aliases
 # Open specified files in Sublime Text
@@ -61,7 +63,6 @@ function parse_git_dirty() {
 function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
-
 function test_terminal_256_colors_tput ()
 {
 	x=`tput op` y=`printf %$((${COLUMNS}-6))s`;
@@ -201,7 +202,7 @@ export BRIGHT_WHITE
 # (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="⋮ "
 
-export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]\[$RESET\]in \[$BOLD\]\[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
+export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]\[$RESET\]in\[$BOLD\] \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \[$RESET\]on\[$BOLD\] \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
 export PS2="\[$YELLOW\]→ \[$RESET\]"
 
 ### Misc
