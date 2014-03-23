@@ -1,8 +1,8 @@
 Dotfiles
 ========
 
-.bash_profile and terminal settings for OS X however most things should work under linux
-colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
+My .bash_profile and terminal settings for OS X, however most things should work under linux.
+Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
 ![preview](preview.png)
 
@@ -20,17 +20,6 @@ colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 ```
-
-###Dependencies
-
-- [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **c** *\<file\>*) can be installed with `sudo easy_install Pygments`
-
-###Auto-installed scripts
-
-These scripts are into ~/bash_scripts
-
-- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from github 's main repoistory
-- [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
 
 ###Aliases & Features
 - **s** - *opens a file in sublime text*
@@ -56,3 +45,14 @@ These scripts are into ~/bash_scripts
 - **gca** - *git commit -a -m*c
 - **gp** - *git push*
 
+###Auto-installed scripts
+
+These scripts are into ~/bash_scripts
+
+- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from github 's main repoistory
+- [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
+
+
+###Dependencies
+
+- [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **c** *\<file\>*) can be installed with `sudo easy_install Pygments`
