@@ -2,6 +2,9 @@
 P="$HOME/Projects"
 PROJECTS=$P
 
+FLATCOLORS=true #this sets the terminals PS1 & 2 colors based on values given in this file. To let your terminal decide the colors, set to false
+
+ENABLE_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 EXTRA_BASH_FILES="$HOME/.bash_scripts"
 EDITOR_OF_CHOICE="Sublime Text 3"
 
@@ -11,9 +14,6 @@ alias lmac="lime test mac"
 alias lflash="lime test flash"
 alias lhtml="lime test html5"
 alias lios="lime test ios"
-if [ -d $PROJECTS ]; then
-	alias p="cd ~/Projects"
-fi
 
 ##########################################
 
@@ -45,6 +45,10 @@ alias bk=back
 
 alias desktop="cd ~/Desktop"
 
+if [ -d $PROJECTS ]; then
+	alias p="cd ~/Projects"
+fi
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
@@ -58,7 +62,6 @@ alias ga='git add .'
 alias gc='git commit -m' # requires you to type a commit message
 alias gca='git commit -a -m' # requires you to type a commit message
 alias gp='git push'
-alias testcolors='test_terminal_256_colors_tput'
 
 #Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
@@ -66,15 +69,13 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finde
 
 #Misc
 alias removeExtraBash='rm -rf $EXTRA_BASH_FILES'
+alias testcolors='test_terminal_256_colors_tput'
 
 ### Prompt Colors 
 # Modified version of @gf3’s Sexy Bash Prompt 
 # (https://github.com/gf3/dotfiles)
 # color codes asii http://misc.flogisoft.com/bash/tip_colors_and_formatting
 # asii 256 color format is: ”<Esc>[38;5;ColorNumberm” where <Esc> = \033. ColorNumber is the same as tput colors
-
-# Settings
-flatColors=true
 
 export CLICOLOR=1
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
@@ -87,14 +88,14 @@ fi
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 #linux ls colors (will only work on linux or with something like gls)
 #reference http://linux-sxs.org/housekeeping/lscolors.html
-if [ $flatColors ]; then
+if $FLATCOLORS ; then
 	export LS_COLORS='di=38;5;32:fi=0:ln=38;5;167:or=38;5;251:mi=38;5;251:ex=38;5;124'
 fi
 
 if tput setaf 1 &> /dev/null; then
 	tput sgr0
 	if [[ $(tput colors) -ge 256 ]] 2> /dev/null; then
-		if ! $flatColors; then
+		if $FLATCOLORS; then
 			BLACK=$(tput setaf 0)
 			RED=$(tput setaf 1)
 			GREEN=$(tput setaf 2)
@@ -134,7 +135,7 @@ if tput setaf 1 &> /dev/null; then
 	BOLD=$(tput bold)
 	RESET=$(tput sgr0)
 else
-	if ! $flatColors; then
+	if $FLATCOLORS; then
 		BLACK='\033[0;30m'  
 		RED='\033[0;31m'    
 		GREEN='\033[0;32m'  
@@ -214,7 +215,6 @@ export PS2="\[$YELLOW\]→ \[$RESET\]"
 # Only show the current directory's name in the tab 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
-
 # Git branch details
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
@@ -223,25 +223,27 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-#Git autocomplete script
-if [ -f $EXTRA_BASH_FILES/git-completion.bash ]; then
- 	. $EXTRA_BASH_FILES/git-completion.bash
-else
-	if [ ! -d $EXTRA_BASH_FILES ]; then
-	 	mkdir $EXTRA_BASH_FILES
+if $ENABLE_EXTRA_SCRIPTS; then
+	#Git autocomplete script
+	if [ -f $EXTRA_BASH_FILES/git-completion.bash ]; then
+	 	. $EXTRA_BASH_FILES/git-completion.bash
+	else
+		if [ ! -d $EXTRA_BASH_FILES ]; then
+		 	mkdir $EXTRA_BASH_FILES
+		fi
+		curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/git-completion.bash
+		echo -e "\n${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/git-completion.bash$RESET"
 	fi
-	curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/git-completion.bash
-	echo -e "\n${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/git-completion.bash$RESET"
-fi
 
-#Install https://github.com/rupa/z
-if [ -f $EXTRA_BASH_FILES/z.sh ]; then
- 	. $EXTRA_BASH_FILES/z.sh
-else
-	if [ ! -d $EXTRA_BASH_FILES ]; then
-	 	mkdir $EXTRA_BASH_FILES
+	#Install https://github.com/rupa/z
+	if [ -f $EXTRA_BASH_FILES/z.sh ]; then
+	 	. $EXTRA_BASH_FILES/z.sh
+	else
+		if [ ! -d $EXTRA_BASH_FILES ]; then
+		 	mkdir $EXTRA_BASH_FILES
+		fi
+		curl https://raw.githubusercontent.com/rupa/z/master/z.sh > $EXTRA_BASH_FILES/z.sh
+		curl https://raw.githubusercontent.com/rupa/z/master/z.1 > $EXTRA_BASH_FILES/z.1
+		echo -e "\n${BOLD}${YELLOW}Z has been installed, see https://github.com/rupa/z for details$RESET"
 	fi
-	curl https://raw.githubusercontent.com/rupa/z/master/z.sh > $EXTRA_BASH_FILES/z.sh
-	curl https://raw.githubusercontent.com/rupa/z/master/z.1 > $EXTRA_BASH_FILES/z.1
-	echo -e "\n${BOLD}${YELLOW}Z has been installed, see https://github.com/rupa/z for details$RESET"
 fi

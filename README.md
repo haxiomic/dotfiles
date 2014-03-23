@@ -22,19 +22,19 @@ open ./Haxiomic.terminal
 
 ###Dependencies
 
-- [pygmentize](http://pygments.org/), can be installed with `sudo easy_install Pygments`
+- [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **c** *\<file\>*) can be installed with `sudo easy_install Pygments`
 
 ###Auto-installed scripts
 
-several scripts into ~/bash_scripts
+These scripts are into ~/bash_scripts
 
-- [git-completion](https://github.com/git/git/tree/master/contrib/completion)
-- [z](https://github.com/rupa/z)
+- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from github 's main repoistory
+- [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
 
-###Aliases
+###Aliases & Features
 - **s** - *opens a file in sublime text*
 - **o** - *short for open, 'o .' to open current directory in finder* 
-- **c** \<file\> - *syntax highlighting in terminal*
+- **c** *\<file\>* - *syntax highlighting in terminal*
 - **show** / **hide** - *show/hide hidden files*
 - **la** - *list all files inclduing dotfiles, in long format*
 - **lsd** - *list only directories*
