@@ -3,6 +3,7 @@ Dotfiles
 
 .bash_profile and terminal settings for OS X however most things should work under linux
 colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
+
 ![preview](preview.png)
 
 ###Installation
