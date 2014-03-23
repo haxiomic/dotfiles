@@ -2,6 +2,8 @@
 P="$HOME/Projects"
 PROJECTS=$P
 
+EXTRA_BASH_FILES="$HOME/.bash_scripts"
+
 ### Aliases
 # Open specified files in Sublime Text
 # "s ." will open the current directory in Sublime
@@ -53,24 +55,12 @@ alias gca='git commit -a -m' # requires you to type a commit message
 alias gp='git push'
 alias testcolors='test_terminal_256_colors_tput'
 
+#Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
 alias hide='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
 
-# Git branch details
-function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
-}
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
-function test_terminal_256_colors_tput ()
-{
-	x=`tput op` y=`printf %$((${COLUMNS}-6))s`;
-	for i in {0..256}; do
-		o=00$i;
-		echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;
-	done
-}
+#Misc
+alias removeExtraBash='rm -rf $EXTRA_BASH_FILES'
 
 ### Prompt Colors 
 # Modified version of @gf3’s Sexy Bash Prompt 
@@ -198,6 +188,15 @@ export BRIGHT_MAGENTA
 export BRIGHT_CYAN
 export BRIGHT_WHITE
 
+function test_terminal_256_colors_tput ()
+{
+	x=`tput op` y=`printf %$((${COLUMNS}-6))s`;
+	for i in {0..256}; do
+		o=00$i;
+		echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;
+	done
+}
+
 # Change this symbol to something sweet. 
 # (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="⋮ "
@@ -209,6 +208,26 @@ export PS2="\[$YELLOW\]→ \[$RESET\]"
 
 # Only show the current directory's name in the tab 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+
+
+# Git branch details
+function parse_git_dirty() {
+	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+}
+function parse_git_branch() {
+	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
+
+#Git autocomplete script
+if [ -f $EXTRA_BASH_FILES/.git-completion.bash ]; then
+ 	. $EXTRA_BASH_FILES/.git-completion.bash
+else
+	if [ ! -d $EXTRA_BASH_FILES ]; then
+	 	mkdir $EXTRA_BASH_FILES
+	fi
+	curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/.git-completion.bash
+	echo -e "\n${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/.git-completion.bash, restart terminal$RESET"
+fi
 
 # init z! (https://github.com/rupa/z)
 #. ~/z.sh
