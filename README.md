@@ -21,24 +21,22 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 ```
 
 ###Aliases & Features
-[TAB] Autocomplete is improved with single tab instead of two and case insensitivity 
-
+######files
 - **s** - *opens a file in sublime text*
 - **o** - *short for open. 'o .' opens the current directory in finder* 
 - **highlight** *\<file\>* - *syntax highlighting in terminal*
-- **show** / **hide** - *show/hide hidden files*
 - **trash** *\<file\>* - *move file to trash*
 - **l** - *list all files including dotfiles, in long format*
 - **lsd** - *list only directories*
-- **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 
 ######navigation
+- **z** *<search string>* - *jump to commonly used directories*
+- **bk** - *go back a directory*
 - **desktop** - *cd ~/Desktop*
 - **..** 	- *cd ..*
 - **...** 	- *cd ../..*
 - **....** 	- *cd ../../..*
 - **.....** - *cd ../../../..*
-- **bk** - *go back a directory*
 
 ######git
 - **gs** - *git status*
@@ -49,6 +47,12 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 - **pull** - *git pull*
 - **gitsetup** *<repo-url>* - *initialises repo with a given url*
 - **gbrowser** - *opens the current remote origin url in the browser*
+
+######other
+- **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
+
+- **show** / **hide** - *show/hide hidden files* 
+- **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 
 ###Auto-installed scripts
 
