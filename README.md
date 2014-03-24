@@ -7,15 +7,13 @@ Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-
 ![preview](preview.png)
 
 ###Installation
-- Put the .bash_profile into your home ~ directory
-- Open the .terminal file and change terminal preferences to set to default
+- Put the .bash_profile into your home directory (`cd ~`)
+- Open the .terminal file and change terminal profile preferences to set it as the default
 - Don't forget to customise the user specific aliases and settings at the top of *.bash_profile*
 
 
 ###### Alternatively use a sym link
-- Fork
-- Configure projects folder and other user-specific stuff at the top of *.bash_profile*
-- Navigate to where you've chosen to placed the files or clone the repo and then run:
+Navigate to where you've chosen to placed the files or cloned the repo and run:
 
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
@@ -23,12 +21,13 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 
 ###Aliases & Features
 - **s** - *opens a file in sublime text*
-- **o** - *short for open, 'o .' to open current directory in finder* 
-- **c** *\<file\>* - *syntax highlighting in terminal*
+- **o** - *short for open. 'o .' opens the current directory in finder* 
+- **highlight** *\<file\>* - *syntax highlighting in terminal*
 - **show** / **hide** - *show/hide hidden files*
-- **la** - *list all files inclduing dotfiles, in long format*
+- **trash** *\<file\>* - *move file to trash*
+- **l** - *list all files inclduing dotfiles, in long format*
 - **lsd** - *list only directories*
-- **removeExtraBashScripts** - *clears auto-installed bash-scripts*
+- **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 
 ######navigation
 - **desktop** - *cd ~/Desktop*
@@ -42,16 +41,16 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 - **gs** - *git status*
 - **ga** - *git add .*
 - **gc** - *git commit -m*
-- **gca** - *git commit -a -m*c
+- **gca** - *git commit -a -m*
 - **gp** - *git push*
 
 ###Auto-installed scripts
 
-These scripts are into ~/bash_scripts
+Additional scripts installed into ~/.bash_scripts/ on first run
 
 - [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from github 's main repoistory
 - [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
-
+- [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
 
 ###Dependencies
 
