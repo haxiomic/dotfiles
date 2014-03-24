@@ -25,7 +25,7 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 ###Aliases & Features
 ######files
 - **s** - *opens a file in sublime text*
-- **o** - *short for open. 'o .' opens the current directory in finder* 
+- **o** - *short for open. 'o' opens the current directory in finder* 
 - **highlight** *\<file\>* - *syntax highlighting in terminal*
 - **trash** *\<file\>* - *move file to trash*
 - **l** - *list all files including dotfiles, in long format*

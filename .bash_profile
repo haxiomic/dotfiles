@@ -23,7 +23,7 @@ alias lios="lime test ios"
 P=PROJECTS
 
 alias s='open -a "$EDITOR_OF_CHOICE"'
-alias o='open '
+alias o=auto_open
 
 # Color LS
 ls="ls" #install coreutils for gls and better ls coloring support
@@ -227,8 +227,15 @@ export PS2="\[$RED\]→ \[$RESET\]"
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 
-#### Git tools ####
+function auto_open(){
+	if [[ -z "$1" ]] ; then
+		open .
+		return
+	fi
+	open $1
+}
 
+#### Git tools ####
 #gcap <message>
 function git_commit_and_push()
 {
