@@ -3,8 +3,8 @@ PROJECTS="$HOME/Projects"
 
 EDITOR_OF_CHOICE="Sublime Text 3"
 
-FLATCOLORS=true #this sets the terminals PS1 & 2 colors based on values given in this file. To let your terminal decide the colors, set to false.
-				 #useful for non-mac terminals
+FLATCOLORS=true		#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
+					#use false for non-mac terminals
 
 ENABLE_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 EXTRA_SCRIPTS_DIR="$HOME/.bash_scripts"

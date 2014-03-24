@@ -44,6 +44,7 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 - **gca** - *git commit -a -m*
 - **push** - *git push*
 - **pull** - *git pull*
+- **gitsetup** *<repo-url>* - *initalises repo with a given url*
 
 ###Auto-installed scripts
 
