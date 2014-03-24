@@ -64,8 +64,10 @@ alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m' # requires you to type a commit message
 alias gca='git commit -a -m' # requires you to type a commit message
+alias gcap=git_commit_and_push
 alias push='git push'
 alias pull='git pull'
+alias gsetup=git_quick_setup
 alias gbrowser='open `git config --get remote.origin.url`'
 
 #Finder
@@ -226,8 +228,20 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 
 #### Git tools ####
+
+#gcap <message>
+function git_commit_and_push()
+{
+	if [[ -z "$1" ]] ; then
+		echo -e "${WHITE}Empty commit message${RESET}"
+		return
+	fi
+	git commit -a -m $1
+	git push
+}
+
 # gitsetup <repo-url>
-function gitsetup()
+function git_quick_setup()
 {
 	if [[ -z "$1" ]] ; then
 		echo -e "${WHITE}Empty repository URL, usage is: gitsetup <repo-url>${RESET}"
