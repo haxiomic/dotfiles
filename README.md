@@ -42,7 +42,8 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 - **ga** - *git add .*
 - **gc** - *git commit -m*
 - **gca** - *git commit -a -m*
-- **gp** - *git push*
+- **push** - *git push*
+- **pull** - *git pull*
 
 ###Auto-installed scripts
 
