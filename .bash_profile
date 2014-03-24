@@ -68,7 +68,7 @@ alias show='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finde
 alias hide='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
 
 #Misc
-alias removeExtraBash='rm -rf $EXTRA_BASH_FILES'
+alias removeExtraBashScripts='rm -rf $EXTRA_BASH_FILES'
 alias testcolors='test_terminal_256_colors_tput'
 
 ### Prompt Colors 
@@ -223,27 +223,38 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
+
+#Extra scripts
 if $ENABLE_EXTRA_SCRIPTS; then
+	RESTART_MESSAGE=false
 	#Git autocomplete script
 	if [ -f $EXTRA_BASH_FILES/git-completion.bash ]; then
 	 	. $EXTRA_BASH_FILES/git-completion.bash
 	else
+		echo -e "\n${BOLD}${YELLOW}Installing git autocomplete$RESET"
 		if [ ! -d $EXTRA_BASH_FILES ]; then
 		 	mkdir $EXTRA_BASH_FILES
 		fi
-		curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/git-completion.bash
-		echo -e "\n${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/git-completion.bash$RESET"
+		curl --silent https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_BASH_FILES/git-completion.bash
+		echo -e "${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_BASH_FILES/git-completion.bash$RESET"
+		RESTART_MESSAGE=true
 	fi
 
 	#Install https://github.com/rupa/z
 	if [ -f $EXTRA_BASH_FILES/z.sh ]; then
 	 	. $EXTRA_BASH_FILES/z.sh
 	else
+		echo -e "\n${BOLD}${YELLOW}Installing Z$RESET"
 		if [ ! -d $EXTRA_BASH_FILES ]; then
 		 	mkdir $EXTRA_BASH_FILES
 		fi
-		curl https://raw.githubusercontent.com/rupa/z/master/z.sh > $EXTRA_BASH_FILES/z.sh
-		curl https://raw.githubusercontent.com/rupa/z/master/z.1 > $EXTRA_BASH_FILES/z.1
-		echo -e "\n${BOLD}${YELLOW}Z has been installed, see https://github.com/rupa/z for details$RESET"
+		curl --silent https://raw.githubusercontent.com/rupa/z/master/z.sh > $EXTRA_BASH_FILES/z.sh
+		curl --silent https://raw.githubusercontent.com/rupa/z/master/z.1 > $EXTRA_BASH_FILES/z.1
+		echo -e "${BOLD}${YELLOW}Z has been installed, see https://github.com/rupa/z for details$RESET"
+		RESTART_MESSAGE=true
+	fi
+
+	if $RESTART_MESSAGE; then
+		echo -e "\n${BOLD}${RED}Restart terminal for changes to take effect$RESET\n"
 	fi
 fi

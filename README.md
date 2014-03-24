@@ -28,7 +28,7 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 - **show** / **hide** - *show/hide hidden files*
 - **la** - *list all files inclduing dotfiles, in long format*
 - **lsd** - *list only directories*
-- **removeExtraBash** - *clears auto-installed bash-scripts*
+- **removeExtraBashScripts** - *clears auto-installed bash-scripts*
 
 ######navigation
 - **desktop** - *cd ~/Desktop*
