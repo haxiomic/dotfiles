@@ -75,9 +75,9 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finde
 alias testColors='test_terminal_256_colors_tput'
 
 #Configure extra scripts
-
 alias trash='. '$EXTRA_SCRIPTS_DIR/trash
-_Z_DATA=$EXTRA_SCRIPTS_DIR'/.zdata'
+
+_Z_DATA=$EXTRA_SCRIPTS_DIR'/.zdata' #z data file location
 
 ### Prompt Colors 
 # Modified version of @gf3’s Sexy Bash Prompt 

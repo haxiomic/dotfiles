@@ -17,15 +17,18 @@ Navigate to where you've chosen to placed the files or cloned the repo and run:
 
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
+ln -s $(pwd)/.inputrc $HOME/.inputrc
 ```
 
 ###Aliases & Features
+[TAB] Autocomplete is improved with single tab instead of two and case insensitivity 
+
 - **s** - *opens a file in sublime text*
 - **o** - *short for open. 'o .' opens the current directory in finder* 
 - **highlight** *\<file\>* - *syntax highlighting in terminal*
 - **show** / **hide** - *show/hide hidden files*
 - **trash** *\<file\>* - *move file to trash*
-- **l** - *list all files inclduing dotfiles, in long format*
+- **l** - *list all files including dotfiles, in long format*
 - **lsd** - *list only directories*
 - **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 
@@ -44,14 +47,14 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 - **gca** - *git commit -a -m*
 - **push** - *git push*
 - **pull** - *git pull*
-- **gitsetup** *<repo-url>* - *initalises repo with a given url*
+- **gitsetup** *<repo-url>* - *initialises repo with a given url*
 - **gbrowser** - *opens the current remote origin url in the browser*
 
 ###Auto-installed scripts
 
 Additional scripts installed into ~/.bash_scripts/ on first run
 
-- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from github 's main repoistory
+- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from Github's main repository
 - [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
 - [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
 
