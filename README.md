@@ -48,7 +48,7 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 - **gcap** *\<message\>* - *git commit -a -m \<message\> && git push*
 - **push** - *git push*
 - **pull** - *git pull*
-- **gitsetup** *<repo-url>* - *initialises repo with a given url*
+- **gsetup** *<repo-url>* - *initialises repo with a given url*
 - **gbrowser** - *opens the current remote origin url in the browser*
 
 ######other
