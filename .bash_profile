@@ -3,7 +3,7 @@ PROJECTS="$HOME/Projects"
 
 EDITOR_OF_CHOICE="Sublime Text 3"
 
-FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
+FLATCOLORS=true	#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
 					#use true for non-mac terminals
 
 ENABLE_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
@@ -33,7 +33,8 @@ else
 	colorflag="--color"
 fi
 alias ls="command ${ls} ${colorflag}"
-alias l="${ls} -laF ${colorflag}" # all files, in long format
+alias l="${ls} -lF ${colorflag}" # long format
+alias la="${ls} -laF ${colorflag}" # all files (including dotfiles), in long format
 alias lsd='${ls} -lF ${colorflag} | grep "^d"' # only directories
 
 alias gls='gls --color' #override coreutils gls with colored gls
@@ -68,8 +69,8 @@ alias pull='git pull'
 alias gbrowser='open `git config --get remote.origin.url`'
 
 #Finder
-alias show='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
-alias hide='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
+alias show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
+alias hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 
 #Misc
 alias testColors='test_terminal_256_colors_tput'
