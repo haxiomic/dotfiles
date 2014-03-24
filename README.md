@@ -45,6 +45,7 @@ ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 - **push** - *git push*
 - **pull** - *git pull*
 - **gitsetup** *<repo-url>* - *initalises repo with a given url*
+- **gbrowser** - *opens the current remote origin url in the browser*
 
 ###Auto-installed scripts
 

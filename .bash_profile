@@ -65,6 +65,7 @@ alias gc='git commit -m' # requires you to type a commit message
 alias gca='git commit -a -m' # requires you to type a commit message
 alias push='git push'
 alias pull='git pull'
+alias gbrowser='open `git config --get remote.origin.url`'
 
 #Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles 1 && killall Finder'
