@@ -43,8 +43,9 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 ######git
 - **gs** - *git status*
 - **ga** - *git add .*
-- **gc** - *git commit -m*
-- **gca** - *git commit -a -m*
+- **gc** *\<message\>* - *git commit -m*
+- **gca** *\<message\>* - *git commit -a -m*
+- **gcap** *\<message\>* - *git commit -a -m \<message\> && git push*
 - **push** - *git push*
 - **pull** - *git pull*
 - **gitsetup** *<repo-url>* - *initialises repo with a given url*

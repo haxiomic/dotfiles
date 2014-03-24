@@ -236,7 +236,7 @@ function git_commit_and_push()
 		echo -e "${WHITE}Empty commit message${RESET}"
 		return
 	fi
-	git commit -a -m $1
+	git commit -a -m "$1"
 	git push
 }
 
