@@ -289,11 +289,13 @@ function installExtraBashScript(){
 		if curl --silent $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
 			echo -e "${BOLD}${YELLOW}${SCRIPT_NAME} has been installed to $EXTRA_SCRIPTS_DIR/${SCRIPT_NAME},\nsee "$SCRIPT_SEE"${RESET}"
 			RESTART_MESSAGE=true
-			return 0
+			true
 		else
 			echo -e "${BOLD}${RED}${SCRIPT_NAME} failed to be installed; check URL is correct: '${SCRIPT_URL}'${RESET}"
-			return 1
+			false
 		fi
+	else
+		true #script already exists
 	fi
 }
 
@@ -354,6 +356,10 @@ if $ENABLE_EXTRA_SCRIPTS; then
 	if $RESTART_MESSAGE; then
 		echo -e "\n${BOLD}${RED}Restart terminal for changes to take effect${RESET}\n"
 	fi
+
+	unset SCRIPT_NAME
+	unset SCRIPT_URL
+	unset SCRIPT_SEE
 fi
 
 
