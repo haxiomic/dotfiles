@@ -28,7 +28,8 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 - **o** - *short for open. 'o' opens the current directory in finder* 
 - **highlight** *\<file\>* - *syntax highlighting in terminal*
 - **trash** *\<file\>* - *move file to trash*
-- **l** - *list all files including dotfiles, in long format*
+- **l** - *list files in long format*
+- **la** - *list all files including dotfiles, in long format*
 - **lsd** - *list only directories*
 
 ######navigation
