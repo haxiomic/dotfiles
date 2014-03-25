@@ -56,9 +56,9 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 - **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 
 - **show** / **hide** - *show/hide hidden files* 
-- **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 - **sman** - *open man page with text edtior*
 - **speedread** *\<file\>* - *Spritz like speed reader in terminal*
+- **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 
 ###Auto-installed scripts
 
