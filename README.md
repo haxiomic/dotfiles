@@ -57,6 +57,8 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 
 - **show** / **hide** - *show/hide hidden files* 
 - **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
+- **sman** - *open man page with text edtior*
+- **speedread** *\<file\>* - *Spritz like speed reader in terminal*
 
 ###Auto-installed scripts
 
@@ -65,6 +67,7 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from Github's main repository
 - [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
 - [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
+- [speedread](https://github.com/pasky/speedread) - 'A simple terminal-based open source Spritz-alike'
 
 ###Dependencies
 

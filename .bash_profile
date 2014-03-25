@@ -75,12 +75,17 @@ alias show='defaults write com.apple.finder AppleShowAllFiles YES && killall Fin
 alias hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 
 #Misc
+function sman() #open manual in $EDITOR_OF_CHOICE
+{
+	man $1 | col -b | open -a "$EDITOR_OF_CHOICE" -f 
+}
 alias testColors='test_terminal_256_colors_tput'
 
 #Configure extra scripts
 alias trash='. '$EXTRA_SCRIPTS_DIR/trash
+alias speedread='perl '$EXTRA_SCRIPTS_DIR/speedread
 
-_Z_DATA=$EXTRA_SCRIPTS_DIR'/.zdata' #z data file location
+_Z_DATA=$EXTRA_SCRIPTS_DIR'/zdata' #z data file location
 
 ### Prompt Colors 
 # Modified version of @gf3’s Sexy Bash Prompt 
@@ -270,52 +275,27 @@ function parse_git_branch() {
 }
 
 
+
 #### Extra scripts ####
-if $ENABLE_EXTRA_SCRIPTS; then
-	RESTART_MESSAGE=false
-	#Git autocomplete script
-	if [ -f $EXTRA_SCRIPTS_DIR/git-completion.bash ]; then
-	 	. $EXTRA_SCRIPTS_DIR/git-completion.bash
-	else
-		echo -e "\n${BOLD}${YELLOW}Installing git autocomplete${RESET}"
+function installExtraBashScript(){
+	SCRIPT_NAME=$1
+	SCRIPT_URL=$2
+	SCRIPT_SEE=$3
+	if [ ! -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
+		echo -e "\n${BOLD}${YELLOW}Installing ${SCRIPT_NAME}${RESET}"
 		if [ ! -d $EXTRA_SCRIPTS_DIR ]; then
 		 	mkdir $EXTRA_SCRIPTS_DIR
 		fi
-		curl --silent https://raw.github.com/git/git/master/contrib/completion/git-completion.bash > $EXTRA_SCRIPTS_DIR/git-completion.bash
-		echo -e "${BOLD}${YELLOW}Git autocomplete installed to $EXTRA_SCRIPTS_DIR/git-completion.bash${RESET}"
-		RESTART_MESSAGE=true
-	fi
-
-	#Install https://github.com/rupa/z
-	if [ -f $EXTRA_SCRIPTS_DIR/z.sh ]; then
-	 	. $EXTRA_SCRIPTS_DIR/z.sh
-	else
-		echo -e "\n${BOLD}${YELLOW}Installing Z$RESET"
-		if [ ! -d $EXTRA_SCRIPTS_DIR ]; then
-		 	mkdir $EXTRA_SCRIPTS_DIR
+		if curl --silent $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
+			echo -e "${BOLD}${YELLOW}${SCRIPT_NAME} has been installed to $EXTRA_SCRIPTS_DIR/${SCRIPT_NAME},\nsee "$SCRIPT_SEE"${RESET}"
+			RESTART_MESSAGE=true
+			return 0
+		else
+			echo -e "${BOLD}${RED}${SCRIPT_NAME} failed to be installed; check URL is correct: '${SCRIPT_URL}'${RESET}"
+			return 1
 		fi
-		curl --silent https://raw.githubusercontent.com/rupa/z/master/z.sh > $EXTRA_SCRIPTS_DIR/z.sh
-		curl --silent https://raw.githubusercontent.com/rupa/z/master/z.1 > $EXTRA_SCRIPTS_DIR/z.1
-		ln -sf $EXTRA_SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
-		echo -e "${BOLD}${YELLOW}Z has been installed to $EXTRA_SCRIPTS_DIR/z.sh, see 'man z' for details${RESET}"
-		RESTART_MESSAGE=true
 	fi
-
-	#Install trash
-	if [ ! -f $EXTRA_SCRIPTS_DIR/trash ]; then
-		echo -e "\n${BOLD}${YELLOW}Installing trash$RESET"
-		if [ ! -d $EXTRA_SCRIPTS_DIR ]; then
-		 	mkdir $EXTRA_SCRIPTS_DIR
-		fi
-		curl --silent https://raw.githubusercontent.com/morgant/tools-osx/master/src/trash > $EXTRA_SCRIPTS_DIR/trash
-		echo -e "${BOLD}${YELLOW}Trash has been installed to $EXTRA_SCRIPTS_DIR/trash, see https://github.com/morgant/tools-osx${RESET}"
-		RESTART_MESSAGE=true
-	fi
-
-	if $RESTART_MESSAGE; then
-		echo -e "\n${BOLD}${RED}Restart terminal for changes to take effect${RESET}\n"
-	fi
-fi
+}
 
 function deleteExtraBashScripts()
 {
@@ -331,3 +311,49 @@ function deleteExtraBashScripts()
 	rm -rf $EXTRA_SCRIPTS_DIR
 	echo -e "${BOLD}${YELLOW}Deleted extra bash scripts${RESET}"
 }
+
+
+if $ENABLE_EXTRA_SCRIPTS; then
+	RESTART_MESSAGE=false
+	#Git autocomplete script
+	SCRIPT_NAME='git-completion.bash'
+	SCRIPT_URL='https://raw.github.com/git/git/master/contrib/completion/git-completion.bash'
+	SCRIPT_SEE='https://github.com/git/git/tree/master/contrib'
+	if [ -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
+	 	. $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
+	else
+		installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+	fi
+
+	#Install https://github.com/rupa/z
+	SCRIPT_NAME='z.sh'
+	SCRIPT_URL='https://raw.githubusercontent.com/rupa/z/master/z.sh'
+	SCRIPT_SEE="'man' z for details"
+	if [ -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
+	 	. $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
+	else
+		if installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"; then
+			if installExtraBashScript 'z.1' 'https://raw.githubusercontent.com/rupa/z/master/z.1' "$SCRIPT_SEE"; then
+				ln -sf $EXTRA_SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
+			fi
+		fi
+	fi
+
+	#Install trash
+	SCRIPT_NAME='trash'
+	SCRIPT_URL='https://raw.githubusercontent.com/morgant/tools-osx/master/src/trash'
+	SCRIPT_SEE='https://github.com/morgant/tools-osx'
+	installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+
+	#Install speedread
+	SCRIPT_NAME='speedread'
+	SCRIPT_URL='https://raw.githubusercontent.com/pasky/speedread/master/speedread'
+	SCRIPT_SEE='https://github.com/pasky/speedread'
+	installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+
+	if $RESTART_MESSAGE; then
+		echo -e "\n${BOLD}${RED}Restart terminal for changes to take effect${RESET}\n"
+	fi
+fi
+
+
