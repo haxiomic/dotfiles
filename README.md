@@ -1,4 +1,4 @@
-Dotfiles
+Better Terminal
 ========
 
 My .bash_profile and terminal settings for OS X, however most things should work under linux.
