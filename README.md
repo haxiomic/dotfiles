@@ -30,7 +30,6 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 - **trash** *\<file\>* - *move file to trash*
 - **l** - *list files in long format*
 - **la** - *list all files including dotfiles, in long format*
-- **lsd** - *list only directories*
 
 ######navigation
 - **z** *<search string>* - *jump to commonly used directories*

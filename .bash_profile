@@ -35,7 +35,6 @@ fi
 alias ls="command ${ls} ${colorflag}"
 alias l="${ls} -lF ${colorflag}" # long format
 alias la="${ls} -laF ${colorflag}" # all files (including dotfiles), in long format
-alias lsd='${ls} -lF ${colorflag} | grep "^d"' # only directories
 
 alias gls='gls --color' #override coreutils gls with colored gls
 
