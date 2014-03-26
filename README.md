@@ -20,6 +20,7 @@ Navigate to where you've chosen to placed the files or cloned the repo and run:
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 ln -s $(pwd)/.inputrc $HOME/.inputrc
+open ./Haxiomic.terminal
 ```
 
 ###Aliases & Features
