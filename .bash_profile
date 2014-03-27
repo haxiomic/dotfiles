@@ -24,6 +24,10 @@ P=PROJECTS
 
 alias s='open -a "$EDITOR_OF_CHOICE"'
 alias o=auto_open
+function si() #open editor with the result of a function, usage: si git diff
+{
+	eval $@ | col -b | open -a "$EDITOR_OF_CHOICE" -f 
+}
 
 # Color LS
 ls="ls" #install coreutils for gls and better ls coloring support
@@ -66,6 +70,7 @@ alias gca='git commit -a -m' # requires you to type a commit message
 alias gcap=git_commit_and_push
 alias push='git push'
 alias pull='git pull'
+alias gdiff='git diff'
 alias gsetup=git_quick_setup
 alias gbrowser='open `git config --get remote.origin.url`'
 

@@ -9,13 +9,14 @@ Also includes iTerm2 colours scheme
 ![preview](preview.png)
 
 ###Installation
-- Put the .bash_profile into your home directory (`cd ~`)
+- Put the .bash_profile & .inputrc into your home directory (`cd ~`)
 - Open the .terminal file and change terminal profile preferences to set it as the default
 - Don't forget to customise the user specific aliases and settings at the top of *.bash_profile*
 
 
 ###### Alternatively use a sym link
-Navigate to where you've chosen to placed the files or cloned the repo and run:
+- First deal with your current .bash_profile and .inputrc file
+- Navigate to where you've chosen to placed the files or cloned the repo and run:
 
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
@@ -27,6 +28,7 @@ open ./Haxiomic.terminal
 ######files
 - **s** - *opens a file in sublime text*
 - **o** - *short for open. 'o' opens the current directory in finder* 
+- **si** *\<cmd\>* - *open the result of a command in sublime text, eg `si git diff`*
 - **highlight** *\<file\>* - *syntax highlighting in terminal*
 - **trash** *\<file\>* - *move file to trash*
 - **l** - *list files in long format*
@@ -49,6 +51,7 @@ open ./Haxiomic.terminal
 - **gcap** *\<message\>* - *git commit -a -m \<message\> && git push*
 - **push** - *git push*
 - **pull** - *git pull*
+- **gdiff** - *git diff*
 - **gsetup** *<repo-url>* - *initialises repo with a given url*
 - **gbrowser** - *opens the current remote origin url in the browser*
 
