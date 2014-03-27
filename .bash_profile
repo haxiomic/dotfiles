@@ -236,7 +236,7 @@ function auto_open(){
 		open .
 		return
 	fi
-	open $1
+	open "$1"
 }
 
 #### Git tools ####
