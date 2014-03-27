@@ -1,7 +1,7 @@
 Better Terminal
 ========
 
-My .bash_profile and terminal settings for OS X, however most things should work under linux.
+.bash_profile and terminal settings for OS X.
 Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
 Also includes iTerm2 colours scheme
