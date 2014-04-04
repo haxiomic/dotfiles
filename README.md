@@ -4,7 +4,7 @@ Better Terminal
 .bash_profile and terminal settings for OS X.
 Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
-Also includes iTerm2 colours scheme
+Also includes iTerm2 scheme
 
 ![preview](preview.png)
 
