@@ -15,6 +15,52 @@ alias lflash="lime test flash"
 alias lhtml="lime test html5"
 alias lios="lime test ios"
 
+function setHaxeNew(){
+	if [ ! -d /usr/lib/haxe ] ; then
+		echo "${RED}No haxe!${RESET}"
+		return
+	fi
+
+	#check there's a haxe.old to set to
+	if [ ! -d /usr/lib/haxe.new ] ; then
+		echo "${YELLOW}Can't find /usr/lib/haxe.new${RESET}"
+		return
+	fi
+
+	#check there isn't already a haxe new to move the current haxe to
+	if [ -d /usr/lib/haxe.old ] ; then
+		echo "${YELLOW}Can't rename current haxe to haxe.old because haxe.old already exists!${RESET}"
+	fi
+
+	#rename current haxe to haxe.old
+	sudo mv /usr/lib/haxe /usr/lib/haxe.old
+	#rename old haxe.old to haxe to set as current
+	sudo mv /usr/lib/haxe.new /usr/lib/haxe
+}
+
+function setHaxeOld(){
+	if [ ! -d /usr/lib/haxe ] ; then
+		echo "${RED}No haxe!${RESET}"
+		return
+	fi
+
+	#check there's a haxe.old to set to
+	if [ ! -d /usr/lib/haxe.old ] ; then
+		echo "${YELLOW}Can't find /usr/lib/haxe.old${RESET}"
+		return
+	fi
+
+	#check there isn't already a haxe new to move the current haxe to
+	if [ -d /usr/lib/haxe.new ] ; then
+		echo "${YELLOW}Can't rename current haxe to haxe.new because haxe.new already exists!${RESET}"
+	fi
+
+	#rename current haxe to haxe.new
+	sudo mv /usr/lib/haxe /usr/lib/haxe.new
+	#rename old haxe.old to haxe to set as current
+	sudo mv /usr/lib/haxe.old /usr/lib/haxe
+}
+
 ##########################################
 
 ### Aliases
@@ -22,8 +68,24 @@ alias lios="lime test ios"
 # "s ." will open the current directory in Sublime
 P=PROJECTS
 
-alias s='open -a "$EDITOR_OF_CHOICE"'
+alias s=auto_open_editor
+function auto_open_editor(){
+	if [[ -z "$1" ]] ; then
+		open -a "$EDITOR_OF_CHOICE" .
+		return
+	fi
+	open -a "$EDITOR_OF_CHOICE" "$1"
+}
+
 alias o=auto_open
+function auto_open(){
+	if [[ -z "$1" ]] ; then
+		open .
+		return
+	fi
+	open "$1"
+}
+
 function si() #open editor with the result of a function, usage: si git diff
 {
 	eval $@ | col -b | open -a "$EDITOR_OF_CHOICE" -f 
@@ -234,15 +296,6 @@ export PS2="\[$RED\]→ \[$RESET\]"
 
 # Only show the current directory's name in the tab 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
-
-
-function auto_open(){
-	if [[ -z "$1" ]] ; then
-		open .
-		return
-	fi
-	open "$1"
-}
 
 #### Git tools ####
 #gcap <message>
