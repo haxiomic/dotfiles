@@ -1,4 +1,4 @@
-########## User Specific Config ########## 
+##########  		 Config 	    ########## 
 SCRIPTS_DIR="$HOME/.bash_scripts"
 EXTRA_SCRIPTS_DIR=$SCRIPTS_DIR/"additional"
 
@@ -9,7 +9,7 @@ FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 
 
 INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
-##########################################
+##############################################
 
 if [ -f $HOME/.user_config.bash ] ; then
 	source $HOME/.user_config.bash
