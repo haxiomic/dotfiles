@@ -1,7 +1,7 @@
-Better Terminal
+Dotfiles
 ========
 
-.bash_profile and terminal settings for OS X.
+.bash_profile and terminal settings for OS X **10.7+**.
 Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
 Also includes iTerm2 scheme
@@ -21,6 +21,7 @@ Also includes iTerm2 scheme
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 ln -s $(pwd)/.inputrc $HOME/.inputrc
+ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 open ./Haxiomic.terminal
 ```
 
@@ -73,5 +74,16 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - [speedread](https://github.com/pasky/speedread) - 'A simple terminal-based open source Spritz-alike'
 
 ###Dependencies
-
+- git
 - [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **c** *\<file\>*) can be installed with `sudo easy_install Pygments`
+
+###Key bindings iTerm2
+Line text-editor style line naviation  
+
+| Combo 	| Action         	| Send 	|
+|-------	|----------------	|------	|
+| ⌘←    	| "HEX CODE"     	| 0x01
+| ⌘→    	| "HEX CODE"     	| 0x05
+| ⌥←    	| "SEND ESC SEQ" 	| b
+| ⌥→    	| "SEND ESC SEQ" 	| f
+

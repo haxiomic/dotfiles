@@ -1,84 +1,41 @@
 ########## User Specific Config ########## 
-PROJECTS="$HOME/Projects"
+SCRIPTS_DIR="$HOME/.bash_scripts"
+EXTRA_SCRIPTS_DIR=$SCRIPTS_DIR/"additional"
 
-EDITOR_OF_CHOICE="Sublime Text 3"
+EDITOR_OF_CHOICE="Sublime Text*.app"
 
 FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
 					#use true for non-mac terminals
 
-ENABLE_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
-EXTRA_SCRIPTS_DIR="$HOME/.bash_scripts"
-
-alias haxedir="cd /usr/lib/haxe"
-alias lmac="lime test mac"
-alias lflash="lime test flash"
-alias lhtml="lime test html5"
-alias lios="lime test ios"
-
-function setHaxeNew(){
-	if [ ! -d /usr/lib/haxe ] ; then
-		echo "${RED}No haxe!${RESET}"
-		return
-	fi
-
-	#check there's a haxe.old to set to
-	if [ ! -d /usr/lib/haxe.new ] ; then
-		echo "${YELLOW}Can't find /usr/lib/haxe.new${RESET}"
-		return
-	fi
-
-	#check there isn't already a haxe new to move the current haxe to
-	if [ -d /usr/lib/haxe.old ] ; then
-		echo "${YELLOW}Can't rename current haxe to haxe.old because haxe.old already exists!${RESET}"
-	fi
-
-	#rename current haxe to haxe.old
-	sudo mv /usr/lib/haxe /usr/lib/haxe.old
-	#rename old haxe.old to haxe to set as current
-	sudo mv /usr/lib/haxe.new /usr/lib/haxe
-}
-
-function setHaxeOld(){
-	if [ ! -d /usr/lib/haxe ] ; then
-		echo "${RED}No haxe!${RESET}"
-		return
-	fi
-
-	#check there's a haxe.old to set to
-	if [ ! -d /usr/lib/haxe.old ] ; then
-		echo "${YELLOW}Can't find /usr/lib/haxe.old${RESET}"
-		return
-	fi
-
-	#check there isn't already a haxe new to move the current haxe to
-	if [ -d /usr/lib/haxe.new ] ; then
-		echo "${YELLOW}Can't rename current haxe to haxe.new because haxe.new already exists!${RESET}"
-	fi
-
-	#rename current haxe to haxe.new
-	sudo mv /usr/lib/haxe /usr/lib/haxe.new
-	#rename old haxe.old to haxe to set as current
-	sudo mv /usr/lib/haxe.old /usr/lib/haxe
-}
+INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
 ##########################################
 
+if [ -f $HOME/.user_config.bash ] ; then
+	source $HOME/.user_config.bash
+fi
+
+if [ -d $PROJECTS ]; then
+	alias p="cd ~/Projects"
+fi
+
 ### Aliases
 # Open specified files in Sublime Text
-# "s ." will open the current directory in Sublime
-P=PROJECTS
+# "s" or s ." will open the current directory in Sublime
 
-alias s=auto_open_editor
-function auto_open_editor(){
+_EDTIOR_APP_LOCATION="`find /Applications/ -maxdepth 1 -type d -name "$EDITOR_OF_CHOICE"`"
+
+alias s=_auto_open_editor
+function _auto_open_editor(){
 	if [[ -z "$1" ]] ; then
-		open -a "$EDITOR_OF_CHOICE" .
+		open -a "$_EDTIOR_APP_LOCATION" .
 		return
 	fi
-	open -a "$EDITOR_OF_CHOICE" "$1"
+	open -a "$_EDTIOR_APP_LOCATION" "$1"
 }
 
-alias o=auto_open
-function auto_open(){
+alias o=_auto_open
+function _auto_open(){
 	if [[ -z "$1" ]] ; then
 		open .
 		return
@@ -88,7 +45,7 @@ function auto_open(){
 
 function si() #open editor with the result of a function, usage: si git diff
 {
-	eval $@ | col -b | open -a "$EDITOR_OF_CHOICE" -f 
+	eval $@ | col -b | open -a "$_EDTIOR_APP_LOCATION" -f 
 }
 
 # Color LS
@@ -113,10 +70,6 @@ alias back="cd -"
 alias bk=back
 
 alias desktop="cd ~/Desktop"
-
-if [ -d $PROJECTS ]; then
-	alias p="cd ~/Projects"
-fi
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -143,15 +96,15 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Find
 #Misc
 function sman() #open manual in $EDITOR_OF_CHOICE
 {
-	man $1 | col -b | open -a "$EDITOR_OF_CHOICE" -f 
+	man $1 | col -b | open -a "$_EDTIOR_APP_LOCATION" -f 
 }
-alias testColors='test_terminal_256_colors_tput'
+alias testColors='_test_terminal_256_colors_tput'
 
 #Configure extra scripts
 alias trash='. '$EXTRA_SCRIPTS_DIR/trash
 alias speedread='perl '$EXTRA_SCRIPTS_DIR/speedread
 
-_Z_DATA=$EXTRA_SCRIPTS_DIR'/zdata' #z data file location
+_Z_DATA=$EXTRA_SCRIPTS_DIR/zdata #z data file location
 
 ### Prompt Colors 
 # Modified version of @gf3’s Sexy Bash Prompt 
@@ -160,6 +113,12 @@ _Z_DATA=$EXTRA_SCRIPTS_DIR'/zdata' #z data file location
 # asii 256 color format is: ”<Esc>[38;5;ColorNumberm” where <Esc> = \033. ColorNumber is the same as tput colors
 
 export CLICOLOR=1
+
+SUPPORTS_256=false
+if [[ $(tput colors) -ge 256 ]] ; then
+	SUPPORTS_256=true
+fi
+
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
 	export TERM=gnome-256color
 elif infocmp xterm-256color >/dev/null 2>&1; then
@@ -183,7 +142,7 @@ BRIGHT_MAGENTA_CODE=13
 BRIGHT_CYAN_CODE=14
 BRIGHT_WHITE_CODE=15
 
-if $FLATCOLORS ; then
+if $FLATCOLORS && $SUPPORTS_256 ; then
 	BLACK_CODE=237
 	RED_CODE=124
 	GREEN_CODE=35
@@ -207,9 +166,7 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 
 #linux ls colors (will only work on linux or with something like gls)
 #reference http://linux-sxs.org/housekeeping/lscolors.html
-if $FLATCOLORS ; then
-	export LS_COLORS='di=38;5;'$CYAN_CODE':fi=0:ln=38;5;'$BRIGHT_MAGENTA_CODE':or=38;5;'$WHITE_CODE':mi=38;5;'$WHITE_CODE':ex=38;5;'$BRIGHT_RED_CODE
-fi
+export LS_COLORS='di=38;5;'$CYAN_CODE':fi=0:ln=38;5;'$BRIGHT_MAGENTA_CODE':or=38;5;'$WHITE_CODE':mi=38;5;'$WHITE_CODE':ex=38;5;'$BRIGHT_RED_CODE
 
 #Formatting is given by two different methods for compatibility
 if tput setaf 1 &> /dev/null; then
@@ -235,7 +192,7 @@ if tput setaf 1 &> /dev/null; then
 	BOLD=$(tput bold)
 	RESET=$(tput sgr0)
 else
-	#Flat colors
+	#no tput
 	BLACK='\033[38;5;'$BLACK_CODE'm'  
 	RED='\033[38;5;'$RED_CODE'm'    
 	GREEN='\033[38;5;'$GREEN_CODE'm'  
@@ -276,7 +233,7 @@ export BRIGHT_WHITE
 export BOLD
 export RESET
 
-function test_terminal_256_colors_tput ()
+function _test_terminal_256_colors_tput ()
 {
 	x=`tput op` y=`printf %$((${COLUMNS}-6))s`;
 	for i in {0..256}; do
@@ -291,8 +248,6 @@ symbol="⋮ "
 
 export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
 export PS2="\[$RED\]→ \[$RESET\]"
-
-### Misc
 
 # Only show the current directory's name in the tab 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
@@ -331,9 +286,8 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
+### Extra scripts 
 
-
-#### Extra scripts ####
 function installExtraBashScript(){
 	SCRIPT_NAME=$1
 	SCRIPT_URL=$2
@@ -341,10 +295,10 @@ function installExtraBashScript(){
 	if [ ! -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
 		echo -e "\n${BOLD}${YELLOW}Installing ${SCRIPT_NAME}${RESET}"
 		if [ ! -d $EXTRA_SCRIPTS_DIR ]; then
-		 	mkdir $EXTRA_SCRIPTS_DIR
+		 	mkdir -p $EXTRA_SCRIPTS_DIR
 		fi
-		if curl --silent $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
-			echo -e "${BOLD}${YELLOW}${SCRIPT_NAME} has been installed to $EXTRA_SCRIPTS_DIR/${SCRIPT_NAME},\nsee "$SCRIPT_SEE"${RESET}"
+		if curl --silent -ssl3 $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
+			echo -e "${BOLD}${GREEN}${SCRIPT_NAME} has been installed to $EXTRA_SCRIPTS_DIR/${SCRIPT_NAME},\nsee "$SCRIPT_SEE"${RESET}"
 			RESTART_MESSAGE=true
 			true
 		else
@@ -372,7 +326,7 @@ function deleteExtraBashScripts()
 }
 
 
-if $ENABLE_EXTRA_SCRIPTS; then
+if $INSTALL_EXTRA_SCRIPTS; then
 	RESTART_MESSAGE=false
 	#Git autocomplete script
 	SCRIPT_NAME='git-completion.bash'
@@ -393,7 +347,7 @@ if $ENABLE_EXTRA_SCRIPTS; then
 	else
 		if installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"; then
 			if installExtraBashScript 'z.1' 'https://raw.githubusercontent.com/rupa/z/master/z.1' "$SCRIPT_SEE"; then
-				ln -sf $EXTRA_SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
+				ln -sf $SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
 			fi
 		fi
 	fi
