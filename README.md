@@ -74,8 +74,8 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - [speedread](https://github.com/pasky/speedread) - 'A simple terminal-based open source Spritz-alike'
 
 ###Dependencies
-- git
 - [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **c** *\<file\>*) can be installed with `sudo easy_install Pygments`
+- git
 
 ###Key bindings iTerm2
 Line text-editor style line naviation  
