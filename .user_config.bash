@@ -14,48 +14,35 @@ alias lflash="lime test flash"
 alias lhtml="lime test html5"
 alias lios="lime test ios"
 
-function setHaxeNew(){
-	if [ ! -d /usr/lib/haxe ] ; then
-		echo "${RED}No haxe!${RESET}"
-		return
+function setHaxeVersion(){
+	FIND_RESULT="`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*$1"`"
+	NUM_RESULTS=`echo "$FIND_RESULT" | wc -l`
+
+	if [[ $NUM_RESULTS -eq 1 ]] && [[ -n $FIND_RESULT ]] ; then
+
+		if [[ ! -d /usr/lib/haxe/lib ]] ; then #make haxe dir & lib if they don't
+			sudo mkdir -p /usr/lib/haxe/lib
+		fi
+
+		sudo ln -sf $FIND_RESULT/haxe /usr/lib/haxe || return 1
+		sudo ln -sf $FIND_RESULT/haxelib /usr/lib/haxe || return 1
+		sudo ln -sf $FIND_RESULT/std /usr/lib/haxe/std || return 1
+
+		printf "${BRIGHT_GREEN}haxe version set to ${BRIGHT_WHITE}${BOLD}$(basename $FIND_RESULT)${RESET}\n"
+	else
+		if [[ -n $FIND_RESULT ]]; then
+			VERSIONS="`basename -a $FIND_RESULT`"
+			printf "${VERSIONS//haxe-/}\n"
+		else
+			printf "${BOLD}${RED}Version $1 not found.\n${BRIGHT_WHITE}Available versions are:${RESET}\n"
+			FIND_ALL=`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*"`
+			VERSIONS="`basename -a $FIND_ALL`"
+			printf "${VERSIONS//haxe-/}\n"
+		fi
 	fi
 
-	#check there's a haxe.old to set to
-	if [ ! -d /usr/lib/haxe.new ] ; then
-		echo "${YELLOW}Can't find /usr/lib/haxe.new${RESET}"
-		return
-	fi
-
-	#check there isn't already a haxe new to move the current haxe to
-	if [ -d /usr/lib/haxe.old ] ; then
-		echo "${YELLOW}Can't rename current haxe to haxe.old because haxe.old already exists!${RESET}"
-	fi
-
-	#rename current haxe to haxe.old
-	sudo mv /usr/lib/haxe /usr/lib/haxe.old
-	#rename old haxe.old to haxe to set as current
-	sudo mv /usr/lib/haxe.new /usr/lib/haxe
-}
-
-function setHaxeOld(){
-	if [ ! -d /usr/lib/haxe ] ; then
-		echo "${RED}No haxe!${RESET}"
-		return
-	fi
-
-	#check there's a haxe.old to set to
-	if [ ! -d /usr/lib/haxe.old ] ; then
-		echo "${YELLOW}Can't find /usr/lib/haxe.old${RESET}"
-		return
-	fi
-
-	#check there isn't already a haxe new to move the current haxe to
-	if [ -d /usr/lib/haxe.new ] ; then
-		echo "${YELLOW}Can't rename current haxe to haxe.new because haxe.new already exists!${RESET}"
-	fi
-
-	#rename current haxe to haxe.new
-	sudo mv /usr/lib/haxe /usr/lib/haxe.new
-	#rename old haxe.old to haxe to set as current
-	sudo mv /usr/lib/haxe.old /usr/lib/haxe
+	unset FIND_RESULT
+	unset NUM_RESULTS
+	unset VERSIONS
+	unset FIND_ALL
 }
