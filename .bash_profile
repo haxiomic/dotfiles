@@ -347,7 +347,7 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	else
 		if installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"; then
 			if installExtraBashScript 'z.1' 'https://raw.githubusercontent.com/rupa/z/master/z.1' "$SCRIPT_SEE"; then
-				ln -sf $SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
+				ln -sf $EXTRA_SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
 			fi
 		fi
 	fi

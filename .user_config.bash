@@ -31,14 +31,14 @@ function setHaxeVersion(){
 		VERSION="`basename $FIND_RESULT`"
 		printf "${BRIGHT_GREEN}haxe version set to ${BRIGHT_WHITE}${BOLD}${VERSION//haxe-/}${RESET}\n"
 	else
-		if [[ -n $FIND_RESULT ]]; then
+		if [[ -n $FIND_RESULT ]]; then #not empty find result
 			VERSIONS="`basename -a $FIND_RESULT`"
-			printf "${VERSIONS//haxe-/}\n"
+			printf "${BRIGHT_WHITE}${VERSIONS//haxe-/}\n"
 		else
 			printf "${BOLD}${RED}Version $1 not found.\n${BRIGHT_WHITE}Available versions are:${RESET}\n"
 			FIND_ALL=`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*"`
 			VERSIONS="`basename -a $FIND_ALL`"
-			printf "${VERSIONS//haxe-/}\n"
+			printf "${BRIGHT_WHITE}${VERSIONS//haxe-/}\n"
 		fi
 	fi
 
