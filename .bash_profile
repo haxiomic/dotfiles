@@ -11,10 +11,12 @@ INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
 ##############################################
 
+# Run user config (overrides default config above)
 if [ -f $HOME/.user_config.bash ] ; then
 	source $HOME/.user_config.bash
 fi
 
+# Project alias
 if [ -d $PROJECTS ]; then
 	alias p="cd ~/Projects"
 fi
@@ -341,7 +343,7 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	#Install https://github.com/rupa/z
 	SCRIPT_NAME='z.sh'
 	SCRIPT_URL='https://raw.githubusercontent.com/rupa/z/master/z.sh'
-	SCRIPT_SEE="'man' z for details"
+	SCRIPT_SEE="'man z' for details"
 	if [ -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
 	 	. $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
 	else

@@ -6,7 +6,7 @@ EDITOR_OF_CHOICE="Sublime Text*.app"
 FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
 					#use true for non-mac terminals
 
-ENABLE_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
+INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
 alias haxedir="cd /usr/lib/haxe"
 alias lmac="lime test mac"
