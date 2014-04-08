@@ -1,7 +1,7 @@
 Dotfiles
 ========
 
-.bash_profile and terminal settings for OS X **10.7+**.
+.bash_profile and terminal settings tested with OS X **10.7+** (< 10.7 doesn't support 256 terminal colors without iTerm2).
 Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
 Also includes iTerm2 scheme
@@ -9,12 +9,13 @@ Also includes iTerm2 scheme
 ![preview](preview.png)
 
 ###Installation
-- Put the .bash_profile & .inputrc into your home directory (`cd ~`)
-- Open the .terminal file and change terminal profile preferences to set it as the default
-- Don't forget to customise the user specific aliases and settings at the top of *.bash_profile*
+###### Regular
+- Customise the user specific aliases and settings in .user_config
+- Put the .bash_profile, .inputrc & .user_config into your home directory (`cd ~`)
+- Open the .terminal or .itermcolors file and change profile preferences to set it as the default
 
 
-###### Alternatively use a sym link
+###### Sym-linked
 - First deal with your current .bash_profile and .inputrc file
 - Navigate to where you've chosen to placed the files or cloned the repo and run:
 
@@ -22,11 +23,13 @@ Also includes iTerm2 scheme
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 ln -s $(pwd)/.inputrc $HOME/.inputrc
 ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
-open ./Haxiomic.terminal
 ```
 
+- Open the .terminal or .itermcolors file and change profile preferences to set it as the default
+
+
 ###Aliases & Features
-######files
+###### files
 - **s** - *opens a file in sublime text*
 - **o** - *short for open. 'o' opens the current directory in finder* 
 - **si** *\<cmd\>* - *open the result of a command in sublime text, eg `si git diff`*
@@ -35,7 +38,7 @@ open ./Haxiomic.terminal
 - **l** - *list files in long format*
 - **la** - *list all files including dotfiles, in long format*
 
-######navigation
+###### navigation
 - **z** *<search string>* - *jump to commonly used directories*
 - **bk** - *go back a directory*
 - **desktop** - *cd ~/Desktop*
@@ -44,7 +47,7 @@ open ./Haxiomic.terminal
 - **....** 	- *cd ../../..*
 - **.....** - *cd ../../../..*
 
-######git
+###### git
 - **gs** - *git status*
 - **ga** - *git add .*
 - **gc** *\<message\>* - *git commit -m*
@@ -56,7 +59,7 @@ open ./Haxiomic.terminal
 - **gsetup** *<repo-url>* - *initialises repo with a given url*
 - **gbrowser** - *opens the current remote origin url in the browser*
 
-######other
+###### other
 - **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 
 - **show** / **hide** - *show/hide hidden files* 
