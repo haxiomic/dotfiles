@@ -365,7 +365,7 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
 
 	if $RESTART_MESSAGE; then
-		echo -e "\n${BOLD}${RED}Restart terminal for changes to take effect${RESET}\n"
+		echo -e "\n${BOLD}${WHITE}Restart terminal for changes to take effect${RESET}\n"
 	fi
 
 	unset SCRIPT_NAME

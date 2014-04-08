@@ -27,8 +27,9 @@ function setHaxeVersion(){
 		sudo ln -sf $FIND_RESULT/haxe /usr/lib/haxe || return 1
 		sudo ln -sf $FIND_RESULT/haxelib /usr/lib/haxe || return 1
 		sudo ln -sf $FIND_RESULT/std /usr/lib/haxe/std || return 1
-
-		printf "${BRIGHT_GREEN}haxe version set to ${BRIGHT_WHITE}${BOLD}$(basename $FIND_RESULT)${RESET}\n"
+		
+		VERSION="`basename $FIND_RESULT`"
+		printf "${BRIGHT_GREEN}haxe version set to ${BRIGHT_WHITE}${BOLD}${VERSION//haxe-/}${RESET}\n"
 	else
 		if [[ -n $FIND_RESULT ]]; then
 			VERSIONS="`basename -a $FIND_RESULT`"
@@ -44,5 +45,6 @@ function setHaxeVersion(){
 	unset FIND_RESULT
 	unset NUM_RESULTS
 	unset VERSIONS
+	unset VERSION
 	unset FIND_ALL
 }
