@@ -332,7 +332,7 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	RESTART_MESSAGE=false
 	#Git autocomplete script
 	SCRIPT_NAME='git-completion.bash'
-	SCRIPT_URL='https://raw.github.com/git/git/master/contrib/completion/git-completion.bash'
+	SCRIPT_URL='https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash'
 	SCRIPT_SEE='https://github.com/git/git/tree/master/contrib'
 	if [ -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
 	 	. $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
