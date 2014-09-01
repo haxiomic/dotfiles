@@ -9,10 +9,11 @@ FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 
 INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
 alias haxedir="cd /usr/lib/haxe"
-alias lmac="lime test mac"
-alias lflash="lime test flash"
-alias lhtml="lime test html5"
-alias lios="lime test ios"
+LIME_TOOL="haxelib run aether"
+alias lmac="$LIME_TOOL test mac"
+alias lflash="$LIME_TOOL test flash"
+alias lhtml="$LIME_TOOL test html5"
+alias lios="$LIME_TOOL test ios"
 
 function setHaxeVersion(){
 	FIND_RESULT="`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*$1"`"

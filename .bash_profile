@@ -299,7 +299,8 @@ function installExtraBashScript(){
 		if [ ! -d $EXTRA_SCRIPTS_DIR ]; then
 		 	mkdir -p $EXTRA_SCRIPTS_DIR
 		fi
-		if curl --silent -ssl3 $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
+		if curl --silent -1 $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
+		#if curl --silent -ssl3 $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
 			echo -e "${BOLD}${GREEN}${SCRIPT_NAME} has been installed to $EXTRA_SCRIPTS_DIR/${SCRIPT_NAME},\nsee "$SCRIPT_SEE"${RESET}"
 			RESTART_MESSAGE=true
 			true
@@ -358,12 +359,6 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	SCRIPT_NAME='trash'
 	SCRIPT_URL='https://raw.githubusercontent.com/morgant/tools-osx/master/src/trash'
 	SCRIPT_SEE='https://github.com/morgant/tools-osx'
-	installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
-
-	#Install speedread
-	SCRIPT_NAME='speedread'
-	SCRIPT_URL='https://raw.githubusercontent.com/pasky/speedread/master/speedread'
-	SCRIPT_SEE='https://github.com/pasky/speedread'
 	installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
 
 	if $RESTART_MESSAGE; then
