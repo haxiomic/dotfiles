@@ -90,6 +90,9 @@ alias pull='git pull'
 alias gdiff='git diff'
 alias gsetup=git_quick_setup
 alias gbrowser='open `git config --get remote.origin.url`'
+alias gmaster='git checkout master'
+alias gpages='git checkout gh-pages'
+
 
 #Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
@@ -275,7 +278,7 @@ function git_quick_setup()
 	fi
 	git init
 	git add *
-	git commit -m "initial commit"
+	git commit -m "Initial commit"
 	git remote add origin $1
 	git push -u origin master
 }
