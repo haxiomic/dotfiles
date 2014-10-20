@@ -9,19 +9,25 @@ FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 
 INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
 alias haxedir="cd /usr/lib/haxe"
+
 LIME_TOOL="haxelib run aether"
 alias lmac="$LIME_TOOL test mac"
 alias lflash="$LIME_TOOL test flash"
 alias lhtml="$LIME_TOOL test html5"
 alias lios="$LIME_TOOL test ios"
 
+FLOW_TOOL="haxelib run flow"
+alias flow=$FLOW_TOOL
+
+
+#folders should be named like: haxe-3.1.3, and the regular haxe folder should be removed
 function setHaxeVersion(){
 	FIND_RESULT="`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*$1"`"
 	NUM_RESULTS=`echo "$FIND_RESULT" | wc -l`
 
 	if [[ $NUM_RESULTS -eq 1 ]] && [[ -n $FIND_RESULT ]] ; then
 
-		if [[ ! -d /usr/lib/haxe/lib ]] ; then #make haxe dir & lib if they don't
+		if [[ ! -d /usr/lib/haxe/lib ]] ; then #make haxe dir & lib if they don't exist
 			sudo mkdir -p /usr/lib/haxe/lib
 		fi
 

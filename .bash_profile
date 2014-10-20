@@ -120,8 +120,11 @@ _Z_DATA=$EXTRA_SCRIPTS_DIR/zdata #z data file location
 export CLICOLOR=1
 
 SUPPORTS_256=false
-if [[ $(tput colors) -ge 256 ]] ; then
-	SUPPORTS_256=true
+if [[ $- == *i* ]]
+then
+	if [[ $(tput colors) -ge 256 ]] ; then
+		SUPPORTS_256=true
+	fi
 fi
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
@@ -174,49 +177,54 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 export LS_COLORS='di=38;5;'$CYAN_CODE':fi=0:ln=38;5;'$BRIGHT_MAGENTA_CODE':or=38;5;'$WHITE_CODE':mi=38;5;'$WHITE_CODE':ex=38;5;'$BRIGHT_RED_CODE
 
 #Formatting is given by two different methods for compatibility
-if tput setaf 1 &> /dev/null; then
-	tput sgr0
-	if [[ $(tput colors) -ge 256 ]] 2> /dev/null; then
-		BLACK=$(tput setaf $BLACK_CODE)
-		RED=$(tput setaf $RED_CODE)
-		GREEN=$(tput setaf $GREEN_CODE)
-		YELLOW=$(tput setaf $YELLOW_CODE)
-		BLUE=$(tput setaf $BLUE_CODE)
-		MAGENTA=$(tput setaf $MAGENTA_CODE)
-		CYAN=$(tput setaf $CYAN_CODE)
-		WHITE=$(tput setaf $WHITE_CODE)
-		BRIGHT_BLACK=$(tput setaf $BRIGHT_BLACK_CODE)
-		BRIGHT_RED=$(tput setaf $BRIGHT_RED_CODE)
-		BRIGHT_GREEN=$(tput setaf $BRIGHT_GREEN_CODE)
-		BRIGHT_YELLOW=$(tput setaf $BRIGHT_YELLOW_CODE)
-		BRIGHT_BLUE=$(tput setaf $BRIGHT_BLUE_CODE)
-		BRIGHT_MAGENTA=$(tput setaf $BRIGHT_MAGENTA_CODE)
-		BRIGHT_CYAN=$(tput setaf $BRIGHT_CYAN_CODE)
-		BRIGHT_WHITE=$(tput setaf $BRIGHT_WHITE_CODE)
-	fi
-	BOLD=$(tput bold)
-	RESET=$(tput sgr0)
-else
-	#no tput
-	BLACK='\033[38;5;'$BLACK_CODE'm'  
-	RED='\033[38;5;'$RED_CODE'm'    
-	GREEN='\033[38;5;'$GREEN_CODE'm'  
-	YELLOW='\033[38;5;'$YELLOW_CODE'm' 
-	BLUE='\033[38;5;'$BLUE_CODE'm'   
-	MAGENTA='\033[38;5;'$MAGENTA_CODE'm'
-	CYAN='\033[38;5;'$CYAN_CODE'm'   
-	WHITE='\033[38;5;'$WHITE_CODE'm'
-	BRIGHT_BLACK='\033[38;5;'$BRIGHT_BLACK_CODE'm'  
-	BRIGHT_RED='\033[38;5;'$BRIGHT_RED_CODE'm'    
-	BRIGHT_GREEN='\033[38;5;'$BRIGHT_GREEN_CODE'm'  
-	BRIGHT_YELLOW='\033[38;5;'$BRIGHT_YELLOW_CODE'm' 
-	BRIGHT_BLUE='\033[38;5;'$BRIGHT_BLUE_CODE'm'   
-	BRIGHT_MAGENTA='\033[38;5;'$BRIGHT_MAGENTA_CODE'm'
-	BRIGHT_CYAN='\033[38;5;'$BRIGHT_CYAN_CODE'm'   
-	BRIGHT_WHITE='\033[38;5;'$BRIGHT_WHITE_CODE'm'
+if [[ $- == *i* ]]
+then
 
-	BOLD='\033[1m'
-	RESET='\033[m'
+	if tput setaf 1 &> /dev/null; then
+		tput sgr0
+		if [[ $(tput colors) -ge 256 ]] 2> /dev/null; then
+			BLACK=$(tput setaf $BLACK_CODE)
+			RED=$(tput setaf $RED_CODE)
+			GREEN=$(tput setaf $GREEN_CODE)
+			YELLOW=$(tput setaf $YELLOW_CODE)
+			BLUE=$(tput setaf $BLUE_CODE)
+			MAGENTA=$(tput setaf $MAGENTA_CODE)
+			CYAN=$(tput setaf $CYAN_CODE)
+			WHITE=$(tput setaf $WHITE_CODE)
+			BRIGHT_BLACK=$(tput setaf $BRIGHT_BLACK_CODE)
+			BRIGHT_RED=$(tput setaf $BRIGHT_RED_CODE)
+			BRIGHT_GREEN=$(tput setaf $BRIGHT_GREEN_CODE)
+			BRIGHT_YELLOW=$(tput setaf $BRIGHT_YELLOW_CODE)
+			BRIGHT_BLUE=$(tput setaf $BRIGHT_BLUE_CODE)
+			BRIGHT_MAGENTA=$(tput setaf $BRIGHT_MAGENTA_CODE)
+			BRIGHT_CYAN=$(tput setaf $BRIGHT_CYAN_CODE)
+			BRIGHT_WHITE=$(tput setaf $BRIGHT_WHITE_CODE)
+		fi
+		BOLD=$(tput bold)
+		RESET=$(tput sgr0)
+	else
+		#no tput
+		BLACK='\033[38;5;'$BLACK_CODE'm'  
+		RED='\033[38;5;'$RED_CODE'm'    
+		GREEN='\033[38;5;'$GREEN_CODE'm'  
+		YELLOW='\033[38;5;'$YELLOW_CODE'm' 
+		BLUE='\033[38;5;'$BLUE_CODE'm'   
+		MAGENTA='\033[38;5;'$MAGENTA_CODE'm'
+		CYAN='\033[38;5;'$CYAN_CODE'm'   
+		WHITE='\033[38;5;'$WHITE_CODE'm'
+		BRIGHT_BLACK='\033[38;5;'$BRIGHT_BLACK_CODE'm'  
+		BRIGHT_RED='\033[38;5;'$BRIGHT_RED_CODE'm'    
+		BRIGHT_GREEN='\033[38;5;'$BRIGHT_GREEN_CODE'm'  
+		BRIGHT_YELLOW='\033[38;5;'$BRIGHT_YELLOW_CODE'm' 
+		BRIGHT_BLUE='\033[38;5;'$BRIGHT_BLUE_CODE'm'   
+		BRIGHT_MAGENTA='\033[38;5;'$BRIGHT_MAGENTA_CODE'm'
+		BRIGHT_CYAN='\033[38;5;'$BRIGHT_CYAN_CODE'm'   
+		BRIGHT_WHITE='\033[38;5;'$BRIGHT_WHITE_CODE'm'
+
+		BOLD='\033[1m'
+		RESET='\033[m'
+	fi
+
 fi
 
 export BLACK
@@ -246,16 +254,6 @@ function _test_terminal_256_colors_tput ()
 		echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;
 	done
 }
-
-# Change this symbol to something sweet. 
-# (http://en.wikipedia.org/wiki/Unicode_symbols)
-symbol="⋮ "
-
-export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
-export PS2="\[$RED\]→ \[$RESET\]"
-
-# Only show the current directory's name in the tab 
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 #### Git tools ####
 #gcap <message>
@@ -290,6 +288,18 @@ function parse_git_dirty() {
 function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
+
+
+# Change this symbol to something sweet. 
+# (http://en.wikipedia.org/wiki/Unicode_symbols)
+symbol="⋮ "
+
+export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
+export PS2="\[$RED\]→ \[$RESET\]"
+
+# Only show the current directory's name in the tab 
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+
 
 ### Extra scripts 
 
