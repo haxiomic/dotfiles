@@ -19,6 +19,8 @@ alias lios="$LIME_TOOL test ios"
 FLOW_TOOL="haxelib run flow"
 alias flow=$FLOW_TOOL
 
+#quick webserver
+alias serve="autoreload-server -f --port 8080" #https://github.com/cytb/simple-autoreload-server
 
 #folders should be named like: haxe-3.1.3, and the regular haxe folder should be removed
 function setHaxeVersion(){
