@@ -64,7 +64,6 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 
 - **show** / **hide** - *show/hide hidden files* 
 - **sman** - *open man page with text edtior*
-- **speedread** *\<file\>* - *Spritz like speed reader in terminal*
 - **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
 
 ###Auto-installed scripts

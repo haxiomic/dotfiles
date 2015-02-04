@@ -107,7 +107,6 @@ alias testColors='_test_terminal_256_colors_tput'
 
 #Configure extra scripts
 alias trash='. '$EXTRA_SCRIPTS_DIR/trash
-alias speedread='perl '$EXTRA_SCRIPTS_DIR/speedread
 
 _Z_DATA=$EXTRA_SCRIPTS_DIR/zdata #z data file location
 
