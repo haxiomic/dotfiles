@@ -18,6 +18,10 @@ alias lios="$LIME_TOOL test ios"
 
 FLOW_TOOL="haxelib run flow"
 alias flow=$FLOW_TOOL
+alias fmac="$FLOW_TOOL run mac"
+alias fflash="$FLOW_TOOL run flash"
+alias fweb="$FLOW_TOOL run web --timeout 0"
+alias fios="$FLOW_TOOL run ios"
 
 #quick webserver
 alias serve="autoreload-server -f --port 8080" #https://github.com/cytb/simple-autoreload-server
