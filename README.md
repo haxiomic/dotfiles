@@ -26,7 +26,7 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 ```
 
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
-- Customize your *.user_config.bash* file; it's design for my personal setup and may cause issues if there's a conflict on your system
+- Customize your *.user_config.bash* file; it's designed for my personal setup and may cause issues if there's a conflict on your system
 
 
 ###Aliases & Features
