@@ -23,6 +23,19 @@ alias fflash="$FLOW_TOOL run flash"
 alias fweb="$FLOW_TOOL run web --timeout 0"
 alias fios="$FLOW_TOOL run ios"
 
+#Extra paths
+#Android
+export ANDROID_NDK=~/Library/Android/ndk
+export ANDROID_HOME=~/Library/Android/sdk
+export ANT_HOME=~/Library/Android/apache-ant
+export JAVA_HOME=/Library/Java/Home
+
+PATH=$PATH:$ANDROID_HOME/tools
+PATH=$PATH:$ANDROID_HOME/platform-tools
+PATH=$PATH:$ANDROID_NDK
+PATH=$PATH:$ANT_HOME/bin
+PATH=$PATH:$JAVA_HOME/bin
+
 #quick webserver
 alias serve="autoreload-server -f --port 8080" #https://github.com/cytb/simple-autoreload-server
 
