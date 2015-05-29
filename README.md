@@ -26,6 +26,7 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 ```
 
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
+- Customize your *.user_config.bash* file; it's design for my personal setup and may cause issues if there's a conflict on your system
 
 
 ###Aliases & Features
@@ -61,7 +62,6 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 
 ###### other
 - **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
-
 - **show** / **hide** - *show/hide hidden files* 
 - **sman** - *open man page with text edtior*
 - **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
@@ -70,10 +70,9 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 
 Additional scripts installed into ~/.bash_scripts/ on first run
 
-- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from Github's main repository
 - [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
+- [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from Github's main repository
 - [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
-- [speedread](https://github.com/pasky/speedread) - 'A simple terminal-based open source Spritz-alike'
 
 ###Dependencies
 - [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **highlight** *\<file\>*) can be installed with `sudo easy_install Pygments`

@@ -8,8 +8,6 @@ FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 
 
 INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
-alias haxedir="cd /usr/lib/haxe"
-
 LIME_TOOL="haxelib run aether"
 alias lmac="$LIME_TOOL test mac"
 alias lflash="$LIME_TOOL test flash"
@@ -23,8 +21,9 @@ alias fflash="$FLOW_TOOL run flash"
 alias fweb="$FLOW_TOOL run web --timeout 0"
 alias fios="$FLOW_TOOL run ios"
 
-#Extra paths
-#Android
+#haxe
+export HAXE_HOME=/usr/lib/haxe
+#android
 export ANDROID_NDK=~/Library/Android/ndk
 export ANDROID_HOME=~/Library/Android/sdk
 export ANT_HOME=~/Library/Android/apache-ant
