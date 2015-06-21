@@ -80,7 +80,7 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - git
 
 ###Key bindings iTerm2 (manual entry)
-Line text-editor style line navigation  
+text-editor style line navigation  
 
 | Combo 	| Action         	| Send 	|
 |-------	|----------------	|------	|
