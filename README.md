@@ -53,8 +53,8 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 - **gc** *\<message\>* - *git commit -m*
 - **gca** *\<message\>* - *git commit -a -m*
 - **gcap** *\<message\>* - *git commit -a -m \<message\> && git push*
-- **push** - *git push*
-- **pull** - *git pull*
+- **gpush** - *git push*
+- **gpull** - *git pull*
 - **gdiff** - *git diff*
 - **gsetup** *<repo-url>* - *initialises repo with a given url*
 - **gbrowser** - *opens the current remote origin url in the browser*
