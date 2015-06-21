@@ -61,10 +61,10 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 
 ###### other
 - **highlight** *\<file\>* - *syntax highlighting in terminal, (requires [pygmentize](http://pygments.org/))*
-- **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 - **show** / **hide** - *show/hide hidden files* 
 - **sman** - *open man page with text edtior*
 - **delete_extra_bash_scripts** - *clears auto-installed bash-scripts*
+- **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 
 ###Auto-installed scripts
 
