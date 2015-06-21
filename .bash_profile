@@ -287,13 +287,18 @@ function parse_git_dirty() {
 function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
+function git_needs_update(){
+	if git rev-parse --git-dir > /dev/null 2>&1; then
+		[ "`git log --pretty=%H ...refs/heads/master^ | head -n 1`" = "`git ls-remote origin -h refs/heads/master |cut -f1`" ] && echo "" || echo " (behind)"
+	fi
+}
 
 
 # Change this symbol to something sweet. 
 # (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="⋮ "
 
-export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
+export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$BRIGHT_WHITE\]\$(git_needs_update) \[$WHITE\]$symbol\[$RESET\]"
 export PS2="\[$RED\]→ \[$RESET\]"
 
 # Only show the current directory's name in the tab 
