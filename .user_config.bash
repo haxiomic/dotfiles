@@ -1,12 +1,9 @@
 ########## User Specific Config ########## 
+EDITOR_OF_CHOICE="Sublime Text*.app"
 PROJECTS="$HOME/Projects"
 
-EDITOR_OF_CHOICE="Sublime Text*.app"
-
-FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
-					#use true for non-mac terminals
-
-INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
+alias p="cd $PROJECTS"
+alias d="cd ~/Desktop"
 
 LIME_TOOL="haxelib run aether"
 alias lmac="$LIME_TOOL test mac"
@@ -61,7 +58,7 @@ function _start_server_on_free_port(){
 
 	#open url when server running
 	{
-		INTERVAL=0.4
+		INTERVAL=0.4 #seconds
 		MAX_TRIES=30
 
 		sleep $INTERVAL;
@@ -82,7 +79,7 @@ function _start_server_on_free_port(){
 			open http://127.0.0.1:$PORT
 		fi
 
-		echo -e "\n${BOLD}${BRIGHT_WHITE}Press enter to terminate${RESET}" &
+		echo -e "\n${BOLD}${BRIGHT_WHITE} - Press enter to terminate - ${RESET}" &
 	} &
 
 	#start server
@@ -100,7 +97,7 @@ function _start_server_on_free_port(){
 		fi
 	fi
 
-	#wait for enter	
+	#wait for enter	key
 	read 
 
 	#on shutdown:

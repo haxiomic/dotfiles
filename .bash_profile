@@ -4,8 +4,7 @@ EXTRA_SCRIPTS_DIR=$SCRIPTS_DIR/"additional"
 
 EDITOR_OF_CHOICE="Sublime Text*.app"
 
-FLATCOLORS=false	#this sets the terminal's PS1 & 2 colors based on the flat 256 color values given in this file. To let your terminal decide the colors, set to false.
-					#use true for non-mac terminals
+FORCE_COLORS=false	#if false the terminal app handles the palette, when true, the color values are set by this script
 
 INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
@@ -15,13 +14,6 @@ INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 if [ -f $HOME/.user_config.bash ] ; then
 	source $HOME/.user_config.bash
 fi
-
-# Project alias
-if [ -d $PROJECTS ]; then
-	alias p="cd ~/Projects"
-fi
-
-alias d="cd ~/Desktop"
 
 ### Aliases
 # Open specified files in Sublime Text
@@ -151,7 +143,7 @@ BRIGHT_MAGENTA_CODE=13
 BRIGHT_CYAN_CODE=14
 BRIGHT_WHITE_CODE=15
 
-if $FLATCOLORS && $SUPPORTS_256 ; then
+if $FORCE_COLORS && $SUPPORTS_256 ; then
 	BLACK_CODE=237
 	RED_CODE=124
 	GREEN_CODE=35
@@ -177,7 +169,7 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 #reference http://linux-sxs.org/housekeeping/lscolors.html
 export LS_COLORS='di=38;5;'$CYAN_CODE':fi=0:ln=38;5;'$BRIGHT_MAGENTA_CODE':or=38;5;'$WHITE_CODE':mi=38;5;'$WHITE_CODE':ex=38;5;'$BRIGHT_RED_CODE
 
-#Formatting is given by two different methods for compatibility
+#formatting is given by two different methods for compatibility
 if [[ $- == *i* ]]
 then
 
