@@ -10,7 +10,6 @@ Also includes iTerm2 scheme
 
 ###Installation
 ###### Regular
-- Customise the user specific aliases and settings in .user_config
 - Put the .bash_profile, .inputrc & .user_config into your home directory (`cd ~`)
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
 
@@ -26,7 +25,10 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 ```
 
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
-- Customize your *.user_config.bash* file; it's designed for my personal setup and may cause issues if there's a conflict on your system
+
+
+--------
+- If you're not me, customize your *.user_config.bash* file; it's designed for my personal setup and may cause issues if there's a conflict on your system.
 
 
 ###Aliases & Features
