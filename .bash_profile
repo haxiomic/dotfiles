@@ -21,6 +21,8 @@ if [ -d $PROJECTS ]; then
 	alias p="cd ~/Projects"
 fi
 
+alias d="cd ~/Desktop"
+
 ### Aliases
 # Open specified files in Sublime Text
 # "s" or s ." will open the current directory in Sublime
@@ -273,6 +275,10 @@ function git_quick_setup()
 		echo -e "${WHITE}Empty repository URL, usage is: gitsetup <repo-url>${RESET}"
 		return
 	fi
+	#make sure there's at lease one file
+	touch .gitignore
+	touch README.md
+	#init git and push initial commit
 	git init
 	git add *
 	git commit -m "Initial commit"
@@ -287,18 +293,13 @@ function parse_git_dirty() {
 function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
-function git_needs_update(){
-	if git rev-parse --git-dir > /dev/null 2>&1; then
-		[ "`git log --pretty=%H ...refs/heads/master^ | head -n 1`" = "`git ls-remote origin -h refs/heads/master |cut -f1`" ] && echo "" || echo " (behind)"
-	fi
-}
 
 
 # Change this symbol to something sweet. 
 # (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="⋮ "
 
-export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch)\[$BRIGHT_WHITE\]\$(git_needs_update) \[$WHITE\]$symbol\[$RESET\]"
+export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch) \[$WHITE\]$symbol\[$RESET\]"
 export PS2="\[$RED\]→ \[$RESET\]"
 
 # Only show the current directory's name in the tab 
@@ -307,7 +308,7 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 ### Extra scripts 
 
-function installExtraBashScript(){
+function install_extra_bash_script(){
 	SCRIPT_NAME=$1
 	SCRIPT_URL=$2
 	SCRIPT_SEE=$3
@@ -330,7 +331,7 @@ function installExtraBashScript(){
 	fi
 }
 
-function deleteExtraBashScripts()
+function delete_extra_bash_scripts()
 {
 	#remove z sym link
 	if [ -h /usr/local/share/man/man1/z.1 ]; then
@@ -355,7 +356,7 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	if [ -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
 	 	. $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
 	else
-		installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+		install_extra_bash_script "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
 	fi
 
 	#Install https://github.com/rupa/z
@@ -365,8 +366,8 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	if [ -f $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME ]; then
 	 	. $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
 	else
-		if installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"; then
-			if installExtraBashScript 'z.1' 'https://raw.githubusercontent.com/rupa/z/master/z.1' "$SCRIPT_SEE"; then
+		if install_extra_bash_script "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"; then
+			if install_extra_bash_script 'z.1' 'https://raw.githubusercontent.com/rupa/z/master/z.1' "$SCRIPT_SEE"; then
 				ln -sf $EXTRA_SCRIPTS_DIR/z.1 /usr/local/share/man/man1/z.1
 			fi
 		fi
@@ -376,7 +377,7 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	SCRIPT_NAME='trash'
 	SCRIPT_URL='https://raw.githubusercontent.com/morgant/tools-osx/master/src/trash'
 	SCRIPT_SEE='https://github.com/morgant/tools-osx'
-	installExtraBashScript "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+	install_extra_bash_script "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
 
 	if $RESTART_MESSAGE; then
 		echo -e "\n${BOLD}${WHITE}Restart terminal for changes to take effect${RESET}\n"

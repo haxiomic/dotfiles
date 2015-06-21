@@ -37,10 +37,57 @@ PATH=$PATH:$ANT_HOME/bin
 PATH=$PATH:$JAVA_HOME/bin
 
 #quick webserver
-alias serve="autoreload-server -f --port 8080" #https://github.com/cytb/simple-autoreload-server
+alias serve=_start_server_on_free_port #https://github.com/cytb/simple-autoreload-server
+alias server=serve
+
+function _start_server_on_free_port(){
+	#increment until free port or 9999
+	{
+	for (( PORT = 8080 ; PORT <= 9999 ; PORT++ )); do
+		R=$(lsof -iTCP:$PORT)
+		if [ ! "$R" ]; then break; fi
+	done
+	} &> /dev/null
+
+	#in parallel:
+	#start scss auto compile if scss folder exists
+	{
+		[ -d "./scss" ] && sass --watch scss:css
+	} &
+	#open url when server running
+	{
+		INTERVAL=0.4
+		sleep $INTERVAL;
+		for (( N = 0 ; N <= 30 ; N++ )); do #give up after 30 tries
+			#is server running
+			R=$(lsof -iTCP:$PORT)
+			if [ "$R" ]; then
+				open http://127.0.0.1:$PORT
+
+				echo -e "\n${BOLD}${BRIGHT_WHITE}Press enter to terminate${RESET}" &
+
+				break;
+			fi
+			sleep $INTERVAL;
+		done
+	} &
+	#start server
+	autoreload-server -f --port $PORT &
+	
+	read 
+
+	#on shutdown:
+	#kill any active jobs
+	{
+		R=$(jobs -p)
+		disown -a #disown any background jobs to prevent messages when killed
+		echo $R | xargs kill -15
+	} &> /dev/null
+}
 
 #folders should be named like: haxe-3.1.3, and the regular haxe folder should be removed
-function setHaxeVersion(){
+alias setHaxeVersion=_set_haxe_version
+function _set_haxe_version(){
 	FIND_RESULT="`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*$1"`"
 	NUM_RESULTS=`echo "$FIND_RESULT" | wc -l`
 
