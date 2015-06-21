@@ -30,14 +30,13 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 
 
 ###Aliases & Features
-###### files
 - **s** - *opens a file in sublime text*
-- **o** - *short for open. 'o' opens the current directory in finder* 
 - **si** *\<cmd\>* - *open the result of a command in sublime text, eg `si git diff`*
-- **highlight** *\<file\>* - *syntax highlighting in terminal*
-- **trash** *\<file\>* - *move file to trash*
+- **o** - *short for open. 'o' opens the current directory in finder* 
 - **l** - *list files in long format*
 - **la** - *list all files including dotfiles, in long format*
+- **trash** *\<file\>* - *move file to trash*
+- **serve** *starts a web server at the current directory*
 
 ###### navigation
 - **z** *<search string>* - *jump to commonly used directories*
@@ -61,10 +60,11 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 - **gbrowser** - *opens the current remote origin url in the browser*
 
 ###### other
+- **highlight** *\<file\>* - *syntax highlighting in terminal, (requires [pygmentize](http://pygments.org/))*
 - **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 - **show** / **hide** - *show/hide hidden files* 
 - **sman** - *open man page with text edtior*
-- **deleteExtraBashScripts** - *clears auto-installed bash-scripts*
+- **delete_extra_bash_scripts** - *clears auto-installed bash-scripts*
 
 ###Auto-installed scripts
 
@@ -75,7 +75,6 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
 
 ###Dependencies
-- [pygmentize](http://pygments.org/) for syntax highlighting in terminal (use bash alias **highlight** *\<file\>*) can be installed with `sudo easy_install Pygments`
 - git
 
 ###Key bindings iTerm2 (manual entry)
@@ -87,4 +86,3 @@ Line text-editor style line navigation
 | ⌘→    	| "HEX CODE"     	| 0x05
 | ⌥←    	| "SEND ESC SEQ" 	| b
 | ⌥→    	| "SEND ESC SEQ" 	| f
-

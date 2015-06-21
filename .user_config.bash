@@ -37,43 +37,70 @@ PATH=$PATH:$ANT_HOME/bin
 PATH=$PATH:$JAVA_HOME/bin
 
 #quick webserver
-alias serve=_start_server_on_free_port #https://github.com/cytb/simple-autoreload-server
+alias serve=_start_server_on_free_port
 alias server=serve
 
 function _start_server_on_free_port(){
+	#start a server with simple-autoreload-server or a python simple http server
+
 	#increment until free port or 9999
 	{
-	for (( PORT = 8080 ; PORT <= 9999 ; PORT++ )); do
-		R=$(lsof -iTCP:$PORT)
-		if [ ! "$R" ]; then break; fi
-	done
+		for (( PORT = 8080 ; PORT <= 9999 ; PORT++ )); do
+			R=$(lsof -iTCP:$PORT)
+			if [ ! "$R" ]; then break; fi
+		done
 	} &> /dev/null
 
-	#in parallel:
+	#background jobs:
 	#start scss auto compile if scss folder exists
 	{
-		[ -d "./scss" ] && sass --watch scss:css
+		if type scss >/dev/null 2>&1; then #check scss command exists
+			[ -d "./scss" ] && sass --watch scss:css
+		fi
 	} &
+
 	#open url when server running
 	{
 		INTERVAL=0.4
+		MAX_TRIES=30
+
 		sleep $INTERVAL;
-		for (( N = 0 ; N <= 30 ; N++ )); do #give up after 30 tries
+
+		for (( N = 0 ; N < MAX_TRIES ; N++ )); do #limit attempts
 			#is server running
 			R=$(lsof -iTCP:$PORT)
 			if [ "$R" ]; then
-				open http://127.0.0.1:$PORT
-
-				echo -e "\n${BOLD}${BRIGHT_WHITE}Press enter to terminate${RESET}" &
-
 				break;
 			fi
 			sleep $INTERVAL;
 		done
+
+		#server is running
+		if [ -f "index.html" ]; then
+			open http://127.0.0.1:$PORT/index.html
+		else
+			open http://127.0.0.1:$PORT
+		fi
+
+		echo -e "\n${BOLD}${BRIGHT_WHITE}Press enter to terminate${RESET}" &
 	} &
+
 	#start server
-	autoreload-server -f --port $PORT &
-	
+	if type autoreload-server >/dev/null 2>&1; then #https://github.com/cytb/simple-autoreload-server
+		autoreload-server -f --port $PORT &
+	else
+		#use a basic python server
+		PYTHON_EDITION=$(python -c 'import sys;import re;print int(re.compile("\d+").findall(sys.version)[0]);')
+		if (( PYTHON_EDITION < 3 )); then
+			#python 2
+			python -m SimpleHTTPServer $PORT &
+		else
+			#python 3
+			python -m http.server &
+		fi
+	fi
+
+	#wait for enter	
 	read 
 
 	#on shutdown:
