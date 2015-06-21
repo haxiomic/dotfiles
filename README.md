@@ -16,7 +16,7 @@ Also includes iTerm2 scheme
 
 ###### Sym-linked
 - First deal with your current .bash_profile and .inputrc file by backing up and removing
-- Navigate to where you've chosen to placed the files or cloned the repo and run:
+- Navigate to where you've cloned the repo and run:
 
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
