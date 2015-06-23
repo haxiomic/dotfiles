@@ -33,6 +33,9 @@ PATH=$PATH:$ANDROID_NDK
 PATH=$PATH:$ANT_HOME/bin
 PATH=$PATH:$JAVA_HOME/bin
 
+#Miniconda
+PATH=$PATH:"/Users/user/Library/Miniconda/bin"
+
 #quick webserver
 alias serve=_start_server_on_free_port
 alias server=serve
@@ -84,7 +87,7 @@ function _start_server_on_free_port(){
 
 	#start server
 	if type autoreload-server >/dev/null 2>&1; then #https://github.com/cytb/simple-autoreload-server
-		autoreload-server -f --port $PORT &
+		autoreload-server -f "\\.(html|css|js)" --port $PORT &
 	else
 		#use a basic python server
 		PYTHON_EDITION=$(python -c 'import sys;import re;print int(re.compile("\d+").findall(sys.version)[0]);')
