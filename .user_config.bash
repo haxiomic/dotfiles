@@ -32,16 +32,14 @@ PATH=$PATH:$ANDROID_HOME/build-tools/22.0.1
 PATH=$PATH:$ANDROID_NDK
 PATH=$PATH:$ANT_HOME/bin
 PATH=$PATH:$JAVA_HOME/bin
-
-#Miniconda
-PATH=$PATH:"/Users/user/Library/Miniconda/bin"
+PATH=$PATH:~/.npm-global/bin
 
 #quick webserver
 alias serve=_start_server_on_free_port
 alias server=serve
 
 function _start_server_on_free_port(){
-	#start a server with simple-autoreload-server or a python simple http server
+	#start a server with simple-autoreload-server, python or a ruby http server
 
 	#increment until free port or 9999
 	{
@@ -88,7 +86,7 @@ function _start_server_on_free_port(){
 	#start server
 	if type autoreload-server >/dev/null 2>&1; then #https://github.com/cytb/simple-autoreload-server
 		autoreload-server -f "\\.(html|css|js)" --port $PORT &
-	else
+	elif type python >/dev/null 2>&1; then
 		#use a basic python server
 		PYTHON_EDITION=$(python -c 'import sys;import re;print int(re.compile("\d+").findall(sys.version)[0]);')
 		if (( PYTHON_EDITION < 3 )); then
@@ -98,6 +96,9 @@ function _start_server_on_free_port(){
 			#python 3
 			python -m http.server &
 		fi
+	else 
+		#ruby server
+		ruby -run -e httpd . -p $PORT &
 	fi
 
 	#wait for enter	key
