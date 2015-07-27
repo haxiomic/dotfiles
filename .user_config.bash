@@ -25,6 +25,8 @@ export ANDROID_NDK=~/Library/Android/ndk
 export ANDROID_HOME=~/Library/Android/sdk
 export ANT_HOME=~/Library/Android/apache-ant
 export JAVA_HOME=/Library/Java/Home
+#changes the npm global modules directory
+export NPM_CONFIG_PREFIX=~/.npm-global
 
 PATH=$PATH:$ANDROID_HOME/tools
 PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -32,7 +34,14 @@ PATH=$PATH:$ANDROID_HOME/build-tools/22.0.1
 PATH=$PATH:$ANDROID_NDK
 PATH=$PATH:$ANT_HOME/bin
 PATH=$PATH:$JAVA_HOME/bin
-PATH=$PATH:~/.npm-global/bin
+PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+
+#fix npm access issues
+if [ ! -d $NPM_CONFIG_PREFIX ]; then
+	mkdir -p $NPM_CONFIG_PREFIX
+	sudo chown -R $USER ~/.npm
+fi
+
 
 #quick webserver
 alias serve=_start_server_on_free_port
@@ -86,6 +95,16 @@ function _start_server_on_free_port(){
 	#start server
 	if type autoreload-server >/dev/null 2>&1; then #https://github.com/cytb/simple-autoreload-server
 		autoreload-server -f "\\.(html|css|js)" --port $PORT &
+
+	elif type npm >/dev/null 2>&1; then
+		read -p "Install simple-autoreload-server with npm? (Globally) [y/N] " -n 1 -r
+
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+		    sudo npm install simple-autoreload-server -g
+
+		    autoreload-server -f "\\.(html|css|js)" --port $PORT &
+		fi
+
 	elif type python >/dev/null 2>&1; then
 		#use a basic python server
 		PYTHON_EDITION=$(python -c 'import sys;import re;print int(re.compile("\d+").findall(sys.version)[0]);')
