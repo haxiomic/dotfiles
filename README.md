@@ -21,14 +21,17 @@ Also includes iTerm2 scheme
 ```bash
 ln -s $(pwd)/.bash_profile $HOME/.bash_profile
 ln -s $(pwd)/.inputrc $HOME/.inputrc
-ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 ```
 
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
 
 
 --------
-- If you're not me, customize your *.user_config.bash* file; it's designed for my personal setup and may cause issues if there's a conflict on your system.
+- If you're me, you should also sym link the *.user_config.bash* file
+```
+ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
+```
+(If you're not me: it's designed for my personal setup and may cause issues if there's a conflict on your system).
 
 
 ###Aliases & Features

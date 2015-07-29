@@ -298,8 +298,97 @@ export PS2="\[$RED\]→ \[$RESET\]"
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 
-### Extra scripts 
+# Quick webserver with the serve command
+alias serve=_start_server_on_free_port
+alias server=serve
 
+function _start_server_on_free_port(){
+	#start a server with simple-autoreload-server, python or a ruby http server
+
+	#increment until free port or 9999
+	{
+		for (( PORT = 8080 ; PORT <= 9999 ; PORT++ )); do
+			R=$(lsof -iTCP:$PORT)
+			if [ ! "$R" ]; then break; fi
+		done
+	} &> /dev/null
+
+	#background jobs:
+	#start scss auto compile if scss folder exists
+	{
+		if type scss >/dev/null 2>&1; then #check scss command exists
+			[ -d "./scss" ] && sass --watch scss:css
+		fi
+	} &
+
+	#open url when server running
+	{
+		INTERVAL=0.4 #seconds
+		MAX_TRIES=30
+
+		sleep $INTERVAL;
+
+		for (( N = 0 ; N < MAX_TRIES ; N++ )); do #limit attempts
+			#is server running
+			R=$(lsof -iTCP:$PORT)
+			if [ "$R" ]; then
+				break;
+			fi
+			sleep $INTERVAL;
+		done
+
+		#server is running
+		if [ -f "index.html" ]; then
+			open http://127.0.0.1:$PORT/index.html
+		else
+			open http://127.0.0.1:$PORT
+		fi
+
+		echo -e "\n${BOLD}${BRIGHT_WHITE} - Press enter to terminate - ${RESET}" &
+	} &
+
+	#start server
+	if type autoreload-server >/dev/null 2>&1; then #https://github.com/cytb/simple-autoreload-server
+		autoreload-server -f "\\.(html|css|js)" --port $PORT &
+
+	elif type npm >/dev/null 2>&1; then
+		read -p "Install simple-autoreload-server with npm? (Globally) [y/N] " -n 1 -r
+
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+		    sudo npm install simple-autoreload-server -g
+
+		    autoreload-server -f "\\.(html|css|js)" --port $PORT &
+		fi
+
+	elif type python >/dev/null 2>&1; then
+		#use a basic python server
+		PYTHON_EDITION=$(python -c 'import sys;import re;print int(re.compile("\d+").findall(sys.version)[0]);')
+		if (( PYTHON_EDITION < 3 )); then
+			#python 2
+			python -m SimpleHTTPServer $PORT &
+		else
+			#python 3
+			python -m http.server &
+		fi
+	else 
+		#ruby server
+		ruby -run -e httpd . -p $PORT &
+	fi
+
+	#wait for enter	key
+	read 
+
+	#on shutdown:
+	#kill any active jobs
+	{
+		R=$(jobs -p)
+		disown -a #disown any background jobs to prevent messages when killed
+		echo $R | xargs kill -15
+	} &> /dev/null
+}
+
+
+#### Extra scripts 
 function install_extra_bash_script(){
 	SCRIPT_NAME=$1
 	SCRIPT_URL=$2
