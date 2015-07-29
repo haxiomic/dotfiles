@@ -28,10 +28,10 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 
 --------
 - If you're me, you should also sym link the *.user_config.bash* file
-```
+```bash
 ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 ```
-(If you're not me: it's designed for my personal setup and may cause issues if there's a conflict on your system).
+(If you're not me: it's designed for my personal setup and may cause issues if there's a conflict on your system)
 
 
 ###Aliases & Features
