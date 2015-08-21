@@ -5,6 +5,9 @@ PROJECTS="$HOME/Projects"
 alias p="cd $PROJECTS"
 alias d="cd ~/Desktop"
 
+alias run="./run.sh"
+alias build="./build.sh"
+
 LIME_TOOL="haxelib run aether"
 alias lmac="$LIME_TOOL test mac"
 alias lflash="$LIME_TOOL test flash"
@@ -17,6 +20,7 @@ alias fmac="$FLOW_TOOL run mac"
 alias fflash="$FLOW_TOOL run flash"
 alias fweb="$FLOW_TOOL run web --timeout 0"
 alias fios="$FLOW_TOOL run ios"
+
 
 #haxe
 export HAXE_HOME=/usr/lib/haxe
