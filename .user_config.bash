@@ -8,7 +8,7 @@ alias d="cd ~/Desktop"
 alias run="./run.sh"
 alias build="./build.sh"
 
-LIME_TOOL="haxelib run aether"
+LIME_TOOL="haxelib run lime"
 alias lmac="$LIME_TOOL test mac"
 alias lflash="$LIME_TOOL test flash"
 alias lhtml="$LIME_TOOL test html5"
@@ -23,12 +23,13 @@ alias fios="$FLOW_TOOL run ios"
 
 
 #haxe
-export HAXE_HOME=/usr/lib/haxe
+export HAXE_HOME=/usr/local/lib/haxe
 #android
 export ANDROID_NDK=~/Library/Android/ndk
 export ANDROID_HOME=~/Library/Android/sdk
 export ANT_HOME=~/Library/Android/apache-ant
 export JAVA_HOME=/Library/Java/Home
+#npm
 #changes the npm global modules directory
 export NPM_CONFIG_PREFIX=~/.npm-global
 
@@ -49,18 +50,20 @@ fi
 #folders should be named like: haxe-3.1.3, and the regular haxe folder should be removed
 alias setHaxeVersion=_set_haxe_version
 function _set_haxe_version(){
-	FIND_RESULT="`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*$1"`"
+	HAXE_PARENT="$(dirname "$HAXE_HOME")"
+
+	FIND_RESULT="`find $HAXE_PARENT -type d -maxdepth 1 -name "haxe-*$1"`"
 	NUM_RESULTS=`echo "$FIND_RESULT" | wc -l`
 
 	if [[ $NUM_RESULTS -eq 1 ]] && [[ -n $FIND_RESULT ]] ; then
 
-		if [[ ! -d /usr/lib/haxe/lib ]] ; then #make haxe dir & lib if they don't exist
-			sudo mkdir -p /usr/lib/haxe/lib
+		if [[ ! -d $HAXE_HOME/lib ]] ; then #make haxe dir & lib if they don't exist
+			sudo mkdir -p $HAXE_HOME/lib
 		fi
 
-		sudo ln -sf $FIND_RESULT/haxe /usr/lib/haxe || return 1
-		sudo ln -sf $FIND_RESULT/haxelib /usr/lib/haxe || return 1
-		sudo ln -sf $FIND_RESULT/std /usr/lib/haxe || return 1
+		sudo ln -sf $FIND_RESULT/haxe $HAXE_HOME || return 1
+		sudo ln -sf $FIND_RESULT/haxelib $HAXE_HOME || return 1
+		sudo ln -sf $FIND_RESULT/std $HAXE_HOME || return 1
 		
 		VERSION="`basename $FIND_RESULT`"
 		printf "${BRIGHT_GREEN}haxe version set to ${BRIGHT_WHITE}${BOLD}${VERSION//haxe-/}${RESET}\n"
@@ -70,7 +73,7 @@ function _set_haxe_version(){
 			printf "${BRIGHT_WHITE}${VERSIONS//haxe-/}\n"
 		else
 			printf "${BOLD}${RED}Version $1 not found.\n${BRIGHT_WHITE}Available versions are:${RESET}\n"
-			FIND_ALL=`find /usr/lib/ -type d -maxdepth 1 -name "haxe-*"`
+			FIND_ALL=`find $HAXE_PARENT -type d -maxdepth 1 -name "haxe-*"`
 			VERSIONS="`basename -a $FIND_ALL`"
 			printf "${BRIGHT_WHITE}${VERSIONS//haxe-/}\n"
 		fi
