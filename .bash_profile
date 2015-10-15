@@ -317,7 +317,18 @@ function _start_server_on_free_port(){
 	#start scss auto compile if scss folder exists
 	{
 		if type scss >/dev/null 2>&1; then #check scss command exists
-			[ -d "./scss" ] && sass --watch scss:css
+			[ -d "./scss" ] && {
+				# determine compile-to folder
+				CSS_FOLDER="css"
+				{
+					[ -d "./css" ] && CSS_FOLDER="css"
+				} || {
+					[ -d "./style" ] && CSS_FOLDER="style"
+				} || {
+					[ -d "./styles" ] && CSS_FOLDER="styles"
+				}
+				sass --watch scss:$CSS_FOLDER
+			}
 		fi
 	} &
 
