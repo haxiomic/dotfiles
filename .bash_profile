@@ -305,6 +305,9 @@ alias server=serve
 function _start_server_on_free_port(){
 	#start a server with simple-autoreload-server, python or a ruby http server
 
+	# kill all jobs on exit
+	trap 'trap - SIGINT SIGTERM EXIT && kill $(jobs -pr) && echo ${BOLD}${BRIGHT_WHITE}Subprocesses killed, press enter to continue${RESET}' SIGINT SIGTERM EXIT
+
 	#increment until free port or 9999
 	{
 		for (( PORT = 8080 ; PORT <= 9999 ; PORT++ )); do

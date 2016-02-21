@@ -21,31 +21,45 @@ alias fflash="$FLOW_TOOL run flash"
 alias fweb="$FLOW_TOOL run web --timeout 0"
 alias fios="$FLOW_TOOL run ios"
 
-
 #haxe
 export HAXE_HOME=/usr/local/lib/haxe
+export NEKO_HOME=/usr/local/lib/neko
+PATH=$PATH:$HAXE_HOME
+PATH=$PATH:$NEKO_HOME
 #android
+export ANDROID_SDK=~/Library/Android/sdk
 export ANDROID_NDK=~/Library/Android/ndk
-export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_HOME=$ANDROID_SDK
 export ANT_HOME=~/Library/Android/apache-ant
-export JAVA_HOME=/Library/Java/Home
+# export JAVA_HOME=/Library/Java/Home
+PATH=$PATH:$ANDROID_SDK/tools
+PATH=$PATH:$ANDROID_SDK/platform-tools
+PATH=$PATH:$ANDROID_SDK/build-tools/23.0.2
+PATH=$PATH:$ANDROID_NDK
+PATH=$PATH:$ANT_HOME/bin
 #npm
 #changes the npm global modules directory
 export NPM_CONFIG_PREFIX=~/.npm-global
-
-PATH=$PATH:$ANDROID_HOME/tools
-PATH=$PATH:$ANDROID_HOME/platform-tools
-PATH=$PATH:$ANDROID_HOME/build-tools/22.0.1
-PATH=$PATH:$ANDROID_NDK
-PATH=$PATH:$ANT_HOME/bin
-PATH=$PATH:$JAVA_HOME/bin
 PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-
 #fix npm access issues
 if [ ! -d $NPM_CONFIG_PREFIX ]; then
     mkdir -p $NPM_CONFIG_PREFIX
     sudo chown -R $USER ~/.npm
 fi
+
+#C/C++ build environment
+# export CXX="`which clang++`"
+# export CC="`which clang`"
+# export CPP="`which clang` -E"
+# export LINK="`which clang++`"
+# export CXX_host="`which clang++`"
+# export CC_host="`which clang`"
+# export CPP_host="`which clang` -E"
+# export LINK_host="`which clang++`"
+# export GYP_DEFINES="clang=1"
+
+#chromium build tools (add to start of path), http://www.chromium.org/developers/how-tos/install-depot-tools
+PATH=/usr/local/lib/depot_tools:$PATH
 
 # Hello Project
 function hello-web(){
