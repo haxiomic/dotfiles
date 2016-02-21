@@ -1,7 +1,7 @@
 Dotfiles
 ========
 
-.bash_profile and terminal settings tested with OS X **10.7** to **10.10** (< 10.7 doesn't support 256 terminal colors without iTerm2).
+.bash_profile and terminal settings tested with OS X **10.7** to **10.11** (< 10.7 doesn't support 256 terminal colors without iTerm2).
 Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
 Also includes iTerm2 scheme
