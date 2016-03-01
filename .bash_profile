@@ -86,6 +86,7 @@ alias gsetup=git_quick_setup
 alias gmaster='git checkout master'
 alias gpages='git checkout gh-pages'
 alias gopen=$EXTRA_SCRIPTS_DIR/'git-open'
+alias git-open=$EXTRA_SCRIPTS_DIR/'git-open'
 
 
 #Finder

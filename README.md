@@ -78,6 +78,7 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - [z jump script](https://github.com/rupa/z) - 'Tracks your most used directories, based on frequency'
 - [git-completion](https://github.com/git/git/tree/master/contrib/completion) - Autocomplete for git from Github's main repository
 - [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
+- [git-open](https://github.com/paulirish/git-open) - 'Type git-open to open the GitHub page or website for a repository in your browser'
 
 ###Dependencies
 - git
