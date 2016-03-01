@@ -62,7 +62,7 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 - **gpull** - *git pull*
 - **gdiff** - *git diff*
 - **gsetup** *<repo-url>* - *initialises repo with a given url*
-- **gbrowser** - *opens the current remote origin url in the browser*
+- **gopen** - *opens current repository in a browser* [more info](https://github.com/paulirish/git-open/blob/master/git-open)
 
 ###### other
 - **highlight** *\<file\>* - *syntax highlighting in terminal, (requires [pygmentize](http://pygments.org/))*

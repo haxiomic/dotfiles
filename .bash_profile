@@ -83,9 +83,9 @@ alias gpush='git push'
 alias gpull='git pull'
 alias gdiff='git diff'
 alias gsetup=git_quick_setup
-alias gbrowser='open `git config --get remote.origin.url`'
 alias gmaster='git checkout master'
 alias gpages='git checkout gh-pages'
+alias gopen=$EXTRA_SCRIPTS_DIR/'git-open'
 
 
 #Finder
@@ -363,7 +363,7 @@ function _start_server_on_free_port(){
 
 	#start server
 	if type live-server >/dev/null 2>&1; then #https://github.com/tapio/live-server
-		live-server --port $PORT &
+		live-server . --port $PORT &
 
 	elif type npm >/dev/null 2>&1; then
 		read -p "Install tapio/live-server with npm? (Globally) [y/N] " -n 1 -r
@@ -371,7 +371,7 @@ function _start_server_on_free_port(){
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
 		    sudo npm install live-server -g
 
-		    live-server --port $PORT &
+		    live-server . --port $PORT &
 		fi
 
 	elif type python >/dev/null 2>&1; then
@@ -414,6 +414,7 @@ function install_extra_bash_script(){
 		fi
 		if curl --silent -1 $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
 		#if curl --silent -ssl3 $SCRIPT_URL -f -o $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME; then
+			chmod a+x $EXTRA_SCRIPTS_DIR/$SCRIPT_NAME
 			echo -e "${BOLD}${GREEN}${SCRIPT_NAME} has been installed to $EXTRA_SCRIPTS_DIR/${SCRIPT_NAME},\nsee "$SCRIPT_SEE"${RESET}"
 			RESTART_MESSAGE=true
 			true
@@ -473,6 +474,14 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	SCRIPT_URL='https://raw.githubusercontent.com/morgant/tools-osx/master/src/trash'
 	SCRIPT_SEE='https://github.com/morgant/tools-osx'
 	install_extra_bash_script "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+
+
+	#Install git-open
+	SCRIPT_NAME='git-open'
+	SCRIPT_URL='https://raw.githubusercontent.com/paulirish/git-open/master/git-open'
+	SCRIPT_SEE='https://github.com/paulirish/git-open'
+	install_extra_bash_script "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+
 
 	if $RESTART_MESSAGE; then
 		echo -e "\n${BOLD}${WHITE}Restart terminal for changes to take effect${RESET}\n"
