@@ -303,7 +303,7 @@ alias serve=_start_server_on_free_port
 alias server=serve
 
 function _start_server_on_free_port(){
-	#start a server with simple-autoreload-server, python or a ruby http server
+	#start a server with tapio/live-server, python or a ruby http server
 
 	# kill all jobs on exit
 	trap 'trap - SIGINT SIGTERM EXIT && kill $(jobs -pr) && echo ${BOLD}${BRIGHT_WHITE}Subprocesses killed, press enter to continue${RESET}' SIGINT SIGTERM EXIT
@@ -362,16 +362,16 @@ function _start_server_on_free_port(){
 	} &
 
 	#start server
-	if type autoreload-server >/dev/null 2>&1; then #https://github.com/cytb/simple-autoreload-server
-		autoreload-server -f "\\.(html|css|js)" --port $PORT &
+	if type live-server >/dev/null 2>&1; then #https://github.com/tapio/live-server
+		live-server --port $PORT &
 
 	elif type npm >/dev/null 2>&1; then
-		read -p "Install simple-autoreload-server with npm? (Globally) [y/N] " -n 1 -r
+		read -p "Install tapio/live-server with npm? (Globally) [y/N] " -n 1 -r
 
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
-		    sudo npm install simple-autoreload-server -g
+		    sudo npm install live-server -g
 
-		    autoreload-server -f "\\.(html|css|js)" --port $PORT &
+		    live-server --port $PORT &
 		fi
 
 	elif type python >/dev/null 2>&1; then
