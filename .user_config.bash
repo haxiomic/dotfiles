@@ -31,6 +31,14 @@ export ANDROID_SDK=~/Library/Android/sdk
 export ANDROID_NDK=~/Library/Android/ndk
 export ANDROID_HOME=$ANDROID_SDK
 export ANT_HOME=~/Library/Android/apache-ant
+export OCULUS_SDK_PATH=~/Library/Oculus/ovr_sdk_mobile_1.0.0.0
+
+#exposes to Android Studio
+launchctl setenv ANDROID_SDK $ANDROID_SDK 
+launchctl setenv ANDROID_SDK $ANDROID_SDK
+launchctl setenv ANDROID_HOME $ANDROID_HOME
+launchctl setenv OCULUS_SDK_PATH $OCULUS_SDK_PATH
+
 # export JAVA_HOME=/Library/Java/Home
 PATH=$PATH:$ANDROID_SDK/tools
 PATH=$PATH:$ANDROID_SDK/platform-tools
