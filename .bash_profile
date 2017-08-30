@@ -1,4 +1,4 @@
-##########  		 Config 	    ########## 
+##########  		 Config 	    ##########
 SCRIPTS_DIR="$HOME/.bash_scripts"
 EXTRA_SCRIPTS_DIR=$SCRIPTS_DIR/"additional"
 
@@ -19,15 +19,15 @@ fi
 # Open specified files in Sublime Text
 # "s" or s ." will open the current directory in Sublime
 
-_EDTIOR_APP_LOCATION="`find /Applications/ -maxdepth 1 -type d -name "$EDITOR_OF_CHOICE"`"
+_EDITOR_APP_LOCATION="`find /Applications/ -maxdepth 1 -type d -name "$EDITOR_OF_CHOICE"`"
 
 alias s=_auto_open_editor
 function _auto_open_editor(){
 	if [[ -z "$1" ]] ; then
-		open -a "$_EDTIOR_APP_LOCATION" .
+		open -a "$_EDITOR_APP_LOCATION" .
 		return
 	fi
-	open -a "$_EDTIOR_APP_LOCATION" "$1"
+	open -a "$_EDITOR_APP_LOCATION" "$1"
 }
 
 alias o=_auto_open
@@ -41,7 +41,7 @@ function _auto_open(){
 
 function si() #open editor with the result of a function, usage: si git diff
 {
-	eval $@ | col -b | open -a "$_EDTIOR_APP_LOCATION" -f 
+	eval $@ | col -b | open -a "$_EDITOR_APP_LOCATION" -f
 }
 
 # Color LS
@@ -73,9 +73,10 @@ alias sudo='sudo '
 # You must install Pygments first - "sudo easy_install Pygments"
 alias highlight='pygmentize -O style=monokai -f console256 -g'
 
-# Git 
+# Git
 alias gs='git status'
-alias ga='git add .'
+alias ga='git add'
+alias gaa='git add .' # git add all
 alias gc='git commit -m' # requires you to type a commit message
 alias gca='git commit -a -m' # requires you to type a commit message
 alias gcap=git_commit_and_push
@@ -96,7 +97,7 @@ alias hide='defaults write com.apple.finder AppleShowAllFiles NO && killall Find
 #Misc
 function sman() #open manual in $EDITOR_OF_CHOICE
 {
-	man $1 | col -b | open -a "$_EDTIOR_APP_LOCATION" -f 
+	man $1 | col -b | open -a "$_EDITOR_APP_LOCATION" -f
 }
 alias testColors='_test_terminal_256_colors_tput'
 
@@ -105,8 +106,8 @@ alias trash='. '$EXTRA_SCRIPTS_DIR/trash
 
 _Z_DATA=$EXTRA_SCRIPTS_DIR/zdata #z data file location
 
-### Prompt Colors 
-# Modified version of @gf3’s Sexy Bash Prompt 
+### Prompt Colors
+# Modified version of @gf3’s Sexy Bash Prompt
 # (https://github.com/gf3/dotfiles)
 # color codes asii http://misc.flogisoft.com/bash/tip_colors_and_formatting
 # asii 256 color format is: ”<Esc>[38;5;ColorNumberm” where <Esc> = \033. ColorNumber is the same as tput colors
@@ -198,21 +199,21 @@ then
 		RESET=$(tput sgr0)
 	else
 		#no tput
-		BLACK='\033[38;5;'$BLACK_CODE'm'  
-		RED='\033[38;5;'$RED_CODE'm'    
-		GREEN='\033[38;5;'$GREEN_CODE'm'  
-		YELLOW='\033[38;5;'$YELLOW_CODE'm' 
-		BLUE='\033[38;5;'$BLUE_CODE'm'   
+		BLACK='\033[38;5;'$BLACK_CODE'm' 
+		RED='\033[38;5;'$RED_CODE'm'   
+		GREEN='\033[38;5;'$GREEN_CODE'm' 
+		YELLOW='\033[38;5;'$YELLOW_CODE'm'
+		BLUE='\033[38;5;'$BLUE_CODE'm'  
 		MAGENTA='\033[38;5;'$MAGENTA_CODE'm'
-		CYAN='\033[38;5;'$CYAN_CODE'm'   
+		CYAN='\033[38;5;'$CYAN_CODE'm'  
 		WHITE='\033[38;5;'$WHITE_CODE'm'
-		BRIGHT_BLACK='\033[38;5;'$BRIGHT_BLACK_CODE'm'  
-		BRIGHT_RED='\033[38;5;'$BRIGHT_RED_CODE'm'    
-		BRIGHT_GREEN='\033[38;5;'$BRIGHT_GREEN_CODE'm'  
-		BRIGHT_YELLOW='\033[38;5;'$BRIGHT_YELLOW_CODE'm' 
-		BRIGHT_BLUE='\033[38;5;'$BRIGHT_BLUE_CODE'm'   
+		BRIGHT_BLACK='\033[38;5;'$BRIGHT_BLACK_CODE'm' 
+		BRIGHT_RED='\033[38;5;'$BRIGHT_RED_CODE'm'   
+		BRIGHT_GREEN='\033[38;5;'$BRIGHT_GREEN_CODE'm' 
+		BRIGHT_YELLOW='\033[38;5;'$BRIGHT_YELLOW_CODE'm'
+		BRIGHT_BLUE='\033[38;5;'$BRIGHT_BLUE_CODE'm'  
 		BRIGHT_MAGENTA='\033[38;5;'$BRIGHT_MAGENTA_CODE'm'
-		BRIGHT_CYAN='\033[38;5;'$BRIGHT_CYAN_CODE'm'   
+		BRIGHT_CYAN='\033[38;5;'$BRIGHT_CYAN_CODE'm'  
 		BRIGHT_WHITE='\033[38;5;'$BRIGHT_WHITE_CODE'm'
 
 		BOLD='\033[1m'
@@ -288,14 +289,14 @@ function parse_git_branch() {
 }
 
 
-# Change this symbol to something sweet. 
+# Change this symbol to something sweet.
 # (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="⋮ "
 
 export PS1="\[${BOLD}${RED}\]\u \[$WHITE\]in \[$CYAN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_MAGENTA\]\$(parse_git_branch) \[$WHITE\]$symbol\[$RESET\]"
 export PS2="\[$RED\]→ \[$RESET\]"
 
-# Only show the current directory's name in the tab 
+# Only show the current directory's name in the tab
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 
@@ -385,13 +386,13 @@ function _start_server_on_free_port(){
 			#python 3
 			python -m http.server &
 		fi
-	else 
+	else
 		#ruby server
 		ruby -run -e httpd . -p $PORT &
 	fi
 
 	#wait for enter	key
-	read 
+	read
 
 	#on shutdown:
 	#kill any active jobs
@@ -403,7 +404,7 @@ function _start_server_on_free_port(){
 }
 
 
-#### Extra scripts 
+#### Extra scripts
 function install_extra_bash_script(){
 	SCRIPT_NAME=$1
 	SCRIPT_URL=$2

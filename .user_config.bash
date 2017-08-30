@@ -31,7 +31,7 @@ export ANDROID_SDK=~/Library/Android/sdk
 export ANDROID_NDK=~/Library/Android/ndk
 export ANDROID_HOME=$ANDROID_SDK
 export ANT_HOME=~/Library/Android/apache-ant
-export OCULUS_SDK_PATH=~/Library/Oculus/ovr_sdk_mobile_1.0.0.0
+export OCULUS_SDK_PATH=~/Library/Oculus/ovr_sdk_mobile_1.0.3
 
 #exposes to Android Studio
 launchctl setenv ANDROID_SDK $ANDROID_SDK 
@@ -72,7 +72,8 @@ PATH=/usr/local/lib/depot_tools:$PATH
 # Hello Project
 function hello-web(){
     if [ -z "$@" ]; then
-        PROJ_NAME="Hello Web"
+        echo "Project named required"
+        return
     else
         PROJ_NAME="$@"
     fi
@@ -82,9 +83,9 @@ function hello-web(){
         cd "$PROJ_NAME" &&
         mkdir css images js lib &&
         touch css/app.css js/app.js &&
-        echo -e '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>'$PROJ_NAME'</title>\n\t\t<link rel="stylesheet" type="text/css" href="css/app.css">\n\t</head>\n\t<body>\n\t\t<h1>'$PROJ_NAME'</h1>\n\t\t<script type="text/javascript" src="js/app.js"></script>\n\t</body>\n</html>' > index.html &&
+        echo -e '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>'$PROJ_NAME'</title>\n\t\t<meta charset="utf-8">\n\t\t<link rel="stylesheet" type="text/css" href="css/app.css">\n\t</head>\n\t<body>\n\t\t<h1>'$PROJ_NAME'</h1>\n\t\t<script type="text/javascript" src="js/app.js"></script>\n\t</body>\n</html>' > index.html &&
 
-        # cd ../ &&
+        cd ../ &&
 
         echo 'Created project "'$PROJ_NAME'"'
     }
@@ -94,7 +95,8 @@ function hello-web(){
 
 function hello-haxe(){
     if [ -z "$@" ]; then
-        PROJ_NAME="Hello Haxe"
+        echo "Project named required"
+        return
     else
         PROJ_NAME="$@"
     fi
@@ -110,7 +112,7 @@ function hello-haxe(){
 
         chmod +x run.sh &&
 
-        # cd ../ &&
+        cd ../ &&
         
         echo 'Created project "'$PROJ_NAME'"'
     }
