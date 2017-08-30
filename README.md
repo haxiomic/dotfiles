@@ -8,7 +8,7 @@ Also includes iTerm2 scheme
 
 ![preview](preview.png)
 
-###Installation
+### Installation
 ###### Regular
 - Put the .bash_profile, .inputrc & .user_config into your home directory (`cd ~`)
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
@@ -34,7 +34,7 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 (If you're not me: it's designed for my personal setup and may cause issues if there's a conflict on your system)
 
 
-###Aliases & Features
+### Aliases & Features
 - **s** - *opens a file in sublime text*
 - **si** *\<cmd\>* - *open the result of a command in sublime text, eg `si git diff`*
 - **o** - *short for open. 'o' opens the current directory in finder* 
@@ -71,7 +71,7 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 - **delete_extra_bash_scripts** - *clears auto-installed bash-scripts*
 - **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 
-###Auto-installed scripts
+### Auto-installed scripts
 
 Additional scripts installed into ~/.bash_scripts/ on first run
 
@@ -80,10 +80,10 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - [trash](https://github.com/morgant/tools-osx) - 'trash allows trashing of files instead of tempting fate with rm'
 - [git-open](https://github.com/paulirish/git-open) - 'Type git-open to open the GitHub page or website for a repository in your browser'
 
-###Dependencies
+### Dependencies
 - git
 
-###Key bindings iTerm2 (manual entry)
+### Key bindings iTerm2 (manual entry)
 text-editor style line navigation  
 
 | Combo 	| Action         	| Send 	|
