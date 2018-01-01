@@ -493,3 +493,5 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	unset SCRIPT_URL
 	unset SCRIPT_SEE
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"

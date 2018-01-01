@@ -5,11 +5,18 @@ PROJECTS="$HOME/Projects"
 alias p="cd $PROJECTS"
 alias d="cd ~/Desktop"
 
-#haxe
+# haxe
 export HAXE_HOME=/usr/local/lib/haxe
 export NEKO_HOME=/usr/local/lib/neko
 PATH=$PATH:$HAXE_HOME
 PATH=$PATH:$NEKO_HOME
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# firefox development
+export MOZBUILD_STATE_PATH=~/Projects/firefox/mozbuild
+
 #android
 # export ANDROID_SDK=~/Library/Android/sdk
 # export ANDROID_NDK=~/Library/Android/ndk
