@@ -10,7 +10,7 @@ Also includes iTerm2 scheme
 
 ### Installation
 ###### Regular
-- Put the .bash_profile, .inputrc & .user_config into your home directory (`cd ~`)
+- Put the .bash_profile and .inputrc into your home directory (`cd ~`)
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
 
 
