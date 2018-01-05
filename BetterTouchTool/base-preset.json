@@ -43,18 +43,6 @@
       },
       "BTTTriggers" : [
         {
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 49,
-          "BTTPredefinedActionName" : "Open Application \/ File \/ Apple Script …",
-          "BTTLaunchPath" : "file:\/\/\/Applications\/Utilities\/Terminal.app",
-          "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 50,
-          "BTTShortcutModifierKeys" : 524288,
-          "BTTOrder" : 0,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
           "BTTGestureNotes" : "Window",
           "BTTTriggerType" : 101,
           "BTTTriggerTypeDescription" : "3 Finger Swipe Right",
@@ -68,43 +56,29 @@
           "BTTAlternateIconData" : ""
         },
         {
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 87,
+          "BTTPredefinedActionName" : "Ctrl(⌃)+Click",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 44,
+          "BTTShortcutModifierKeys" : 1835008,
+          "BTTOrder" : 15,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
           "BTTTriggerType" : -1,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 49,
-          "BTTPredefinedActionName" : "Open Application \/ File \/ Apple Script …",
-          "BTTLaunchPath" : "file:\/\/\/Applications\/Sublime%20Text.app",
+          "BTTPredefinedActionType" : 10,
+          "BTTPredefinedActionName" : "Open Finder",
           "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 18,
+          "BTTShortcutKeyCode" : 10,
           "BTTShortcutModifierKeys" : 524288,
-          "BTTOrder" : 2,
+          "BTTOrder" : 3,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         },
         {
-          "BTTTriggerType" : -1,
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 97,
-          "BTTPredefinedActionName" : "Center Window",
-          "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 121,
-          "BTTShortcutModifierKeys" : 8388608,
-          "BTTOrder" : 7,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 95,
-          "BTTPredefinedActionName" : "Maximize Window to Bottom Half",
-          "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 121,
-          "BTTShortcutModifierKeys" : 524288,
-          "BTTOrder" : 11,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTTriggerType" : -1,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
           "BTTPredefinedActionType" : 49,
           "BTTPredefinedActionName" : "Open Application \/ File \/ Apple Script …",
@@ -112,7 +86,7 @@
           "BTTEnabled" : 1,
           "BTTShortcutKeyCode" : 19,
           "BTTShortcutModifierKeys" : 524288,
-          "BTTOrder" : 3,
+          "BTTOrder" : 6,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : "",
           "BTTFiles" : [
@@ -123,26 +97,26 @@
         },
         {
           "BTTGestureNotes" : "Window",
-          "BTTTriggerType" : 102,
-          "BTTTriggerTypeDescription" : "3 Finger Swipe Up",
+          "BTTTriggerType" : 103,
+          "BTTTriggerTypeDescription" : "3 Finger Swipe Down",
           "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
-          "BTTPredefinedActionType" : 96,
-          "BTTPredefinedActionName" : "Maximize Window to Top Half",
+          "BTTPredefinedActionType" : 95,
+          "BTTPredefinedActionName" : "Maximize Window to Bottom Half",
           "BTTEnabled" : 1,
           "BTTRequiredModifierKeys" : 8912896,
-          "BTTOrder" : 6,
+          "BTTOrder" : 7,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         },
         {
           "BTTTriggerType" : -1,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 108,
-          "BTTPredefinedActionName" : "Resize window to Left Third",
+          "BTTPredefinedActionType" : 19,
+          "BTTPredefinedActionName" : "Maximize Window Left",
           "BTTEnabled" : 1,
           "BTTShortcutKeyCode" : 115,
-          "BTTShortcutModifierKeys" : 8912896,
-          "BTTOrder" : 8,
+          "BTTShortcutModifierKeys" : 8388608,
+          "BTTOrder" : 7,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         },
@@ -154,7 +128,32 @@
           "BTTEnabled" : 1,
           "BTTShortcutKeyCode" : 119,
           "BTTShortcutModifierKeys" : 8388608,
-          "BTTOrder" : 5,
+          "BTTOrder" : 8,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 49,
+          "BTTPredefinedActionName" : "Open Application \/ File \/ Apple Script …",
+          "BTTLaunchPath" : "file:\/\/\/Applications\/Utilities\/Terminal.app",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 50,
+          "BTTShortcutModifierKeys" : 524288,
+          "BTTOrder" : 0,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTGestureNotes" : "Window",
+          "BTTTriggerType" : 100,
+          "BTTTriggerTypeDescription" : "3 Finger Swipe Left",
+          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
+          "BTTPredefinedActionType" : 108,
+          "BTTPredefinedActionName" : "Resize window to Left Third",
+          "BTTEnabled" : 1,
+          "BTTRequiredModifierKeys" : 8912896,
+          "BTTOrder" : 4,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         },
@@ -174,6 +173,43 @@
           "BTTTriggerType" : 102,
           "BTTTriggerTypeDescription" : "3 Finger Swipe Up",
           "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
+          "BTTPredefinedActionType" : 96,
+          "BTTPredefinedActionName" : "Maximize Window to Top Half",
+          "BTTEnabled" : 1,
+          "BTTRequiredModifierKeys" : 8912896,
+          "BTTOrder" : 6,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTGestureNotes" : "Window",
+          "BTTTriggerType" : 100,
+          "BTTTriggerTypeDescription" : "3 Finger Swipe Left",
+          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
+          "BTTPredefinedActionType" : 19,
+          "BTTPredefinedActionName" : "Maximize Window Left",
+          "BTTEnabled" : 1,
+          "BTTRequiredModifierKeys" : 8388608,
+          "BTTOrder" : 0,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 21,
+          "BTTPredefinedActionName" : "Maximize Window",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 116,
+          "BTTShortcutModifierKeys" : 8388608,
+          "BTTOrder" : 9,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTGestureNotes" : "Window",
+          "BTTTriggerType" : 102,
+          "BTTTriggerTypeDescription" : "3 Finger Swipe Up",
+          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
           "BTTPredefinedActionType" : 21,
           "BTTPredefinedActionName" : "Maximize Window",
           "BTTEnabled" : 1,
@@ -196,50 +232,13 @@
           "BTTAlternateIconData" : ""
         },
         {
-          "BTTTriggerType" : -1,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 110,
-          "BTTPredefinedActionName" : "Resize window to Right Third",
+          "BTTPredefinedActionType" : 95,
+          "BTTPredefinedActionName" : "Maximize Window to Bottom Half",
           "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 119,
-          "BTTShortcutModifierKeys" : 8912896,
-          "BTTOrder" : 9,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTTriggerType" : -1,
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 10,
-          "BTTPredefinedActionName" : "Open Finder",
-          "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 10,
+          "BTTShortcutKeyCode" : 121,
           "BTTShortcutModifierKeys" : 524288,
-          "BTTOrder" : 1,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTGestureNotes" : "Window",
-          "BTTTriggerType" : 100,
-          "BTTTriggerTypeDescription" : "3 Finger Swipe Left",
-          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
-          "BTTPredefinedActionType" : 19,
-          "BTTPredefinedActionName" : "Maximize Window Left",
-          "BTTEnabled" : 1,
-          "BTTRequiredModifierKeys" : 8388608,
-          "BTTOrder" : 0,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 96,
-          "BTTPredefinedActionName" : "Maximize Window to Top Half",
-          "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 116,
-          "BTTShortcutModifierKeys" : 524288,
-          "BTTOrder" : 10,
+          "BTTOrder" : 14,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         },
@@ -259,61 +258,60 @@
         {
           "BTTTriggerType" : -1,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 19,
-          "BTTPredefinedActionName" : "Maximize Window Left",
+          "BTTPredefinedActionType" : 110,
+          "BTTPredefinedActionName" : "Resize window to Right Third",
           "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 115,
-          "BTTShortcutModifierKeys" : 8388608,
-          "BTTOrder" : 4,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 87,
-          "BTTPredefinedActionName" : "Ctrl(⌃)+Click",
-          "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 44,
-          "BTTShortcutModifierKeys" : 1835008,
+          "BTTShortcutKeyCode" : 119,
+          "BTTShortcutModifierKeys" : 8912896,
           "BTTOrder" : 12,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTGestureNotes" : "Window",
-          "BTTTriggerType" : 100,
-          "BTTTriggerTypeDescription" : "3 Finger Swipe Left",
-          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
-          "BTTPredefinedActionType" : 108,
-          "BTTPredefinedActionName" : "Resize window to Left Third",
-          "BTTEnabled" : 1,
-          "BTTRequiredModifierKeys" : 8912896,
-          "BTTOrder" : 4,
-          "BTTIconData" : "Standard Close Icon",
-          "BTTAlternateIconData" : ""
-        },
-        {
-          "BTTGestureNotes" : "Window",
-          "BTTTriggerType" : 103,
-          "BTTTriggerTypeDescription" : "3 Finger Swipe Down",
-          "BTTTriggerClass" : "BTTTriggerTypeTouchpadAll",
-          "BTTPredefinedActionType" : 95,
-          "BTTPredefinedActionName" : "Maximize Window to Bottom Half",
-          "BTTEnabled" : 1,
-          "BTTRequiredModifierKeys" : 8912896,
-          "BTTOrder" : 7,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         },
         {
           "BTTTriggerType" : -1,
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
-          "BTTPredefinedActionType" : 21,
-          "BTTPredefinedActionName" : "Maximize Window",
+          "BTTPredefinedActionType" : 49,
+          "BTTPredefinedActionName" : "Open Application \/ File \/ Apple Script …",
+          "BTTLaunchPath" : "file:\/\/\/Applications\/Sublime%20Text.app",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 18,
+          "BTTShortcutModifierKeys" : 524288,
+          "BTTOrder" : 5,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTTriggerType" : -1,
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 108,
+          "BTTPredefinedActionName" : "Resize window to Left Third",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 115,
+          "BTTShortcutModifierKeys" : 8912896,
+          "BTTOrder" : 11,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTTriggerType" : -1,
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 97,
+          "BTTPredefinedActionName" : "Center Window",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 121,
+          "BTTShortcutModifierKeys" : 8388608,
+          "BTTOrder" : 10,
+          "BTTIconData" : "Standard Close Icon",
+          "BTTAlternateIconData" : ""
+        },
+        {
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : 96,
+          "BTTPredefinedActionName" : "Maximize Window to Top Half",
           "BTTEnabled" : 1,
           "BTTShortcutKeyCode" : 116,
-          "BTTShortcutModifierKeys" : 8388608,
-          "BTTOrder" : 6,
+          "BTTShortcutModifierKeys" : 524288,
+          "BTTOrder" : 13,
           "BTTIconData" : "Standard Close Icon",
           "BTTAlternateIconData" : ""
         }
@@ -326,16 +324,18 @@
       "BTTAppProcessName" : "Terminal",
       "BTTTriggers" : [
         {
+          "BTTGestureNotes" : "Delete line up to cursor",
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
           "BTTPredefinedActionType" : -1,
           "BTTPredefinedActionName" : "No Action",
-          "BTTShortcutToSend" : "36",
+          "BTTShortcutToSend" : "59,32",
           "BTTEnabled" : 1,
-          "BTTShortcutKeyCode" : 40,
-          "BTTShortcutModifierKeys" : 393216,
-          "BTTOrder" : 2
+          "BTTShortcutKeyCode" : 51,
+          "BTTShortcutModifierKeys" : 1048576,
+          "BTTOrder" : 3
         },
         {
+          "BTTGestureNotes" : "Move cursor left 1 word",
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
           "BTTPredefinedActionType" : -1,
           "BTTPredefinedActionName" : "No Action",
@@ -346,6 +346,18 @@
           "BTTOrder" : 0
         },
         {
+          "BTTGestureNotes" : "Delete last word",
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : -1,
+          "BTTPredefinedActionName" : "No Action",
+          "BTTShortcutToSend" : "59,13",
+          "BTTEnabled" : 1,
+          "BTTShortcutKeyCode" : 51,
+          "BTTShortcutModifierKeys" : 524288,
+          "BTTOrder" : 2
+        },
+        {
+          "BTTGestureNotes" : "Move cursor right 1 word",
           "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
           "BTTPredefinedActionType" : -1,
           "BTTPredefinedActionName" : "No Action",
@@ -355,6 +367,15 @@
           "BTTShortcutModifierKeys" : 1048576,
           "BTTOrder" : 1
         }
+      ]
+    },
+    {
+      "BTTAppBundleIdentifier" : "com.sublimetext.3",
+      "BTTAppName" : "Sublime Text",
+      "BTTAppProcessMatchMode" : 2,
+      "BTTAppProcessName" : "Sublime Text",
+      "BTTTriggers" : [
+
       ]
     }
   ],
