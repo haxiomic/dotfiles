@@ -3,7 +3,7 @@ EDITOR_OF_CHOICE="Sublime Text*.app"
 PROJECTS="$HOME/Projects"
 
 alias p="cd $PROJECTS"
-alias d="cd ~/Desktop"
+alias d="cd ~/Downloads"
 
 # haxe
 export HAXE_HOME=/usr/local/lib/haxe
@@ -76,7 +76,7 @@ function hello-web(){
         cd "$PROJ_NAME" &&
         mkdir css images js lib &&
         touch css/app.css js/app.js &&
-        echo -e '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>'$PROJ_NAME'</title>\n\t\t<meta charset="utf-8">\n\t\t<link rel="stylesheet" type="text/css" href="css/app.css">\n\t</head>\n\t<body>\n\t\t<h1>'$PROJ_NAME'</h1>\n\t\t<script type="text/javascript" src="js/app.js"></script>\n\t</body>\n</html>' > index.html &&
+        echo -e '<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>'$PROJ_NAME'</title>\n\t\t<meta charset="utf-8">\n\t\t<link rel="stylesheet" type="text/css" href="css/app.css">\n\t</head>\n\t<body>\n\t\t<h1>Hello '$PROJ_NAME'</h1>\n\t\t<script type="text/javascript" src="js/app.js"></script>\n\t</body>\n</html>' > index.html &&
 
         cd ../ &&
 
@@ -99,11 +99,8 @@ function hello-haxe(){
         cd "$PROJ_NAME" &&
         mkdir src &&
 
-        echo -e '-main Main\n-cp src\n-neko bin/main.n' > build.hxml &&
-        echo -e 'haxe build.hxml &&\nneko bin/main.n' > run.sh &&
-        echo -e 'class Main{\r\n\r\n\tstatic function main(){\r\n\t\ttrace("'$PROJ_NAME'");\r\n\t}\r\n\r\n}' > src/Main.hx &&
-
-        chmod +x run.sh &&
+        echo -e '-main Main\n-cp src\n--interp' > build.hxml &&
+        echo -e 'class Main{\r\n\r\n\tstatic function main(){\r\n\t\ttrace("Hello '$PROJ_NAME'");\r\n\t}\r\n\r\n}' > src/Main.hx &&
 
         cd ../ &&
         
