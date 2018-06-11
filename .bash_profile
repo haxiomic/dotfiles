@@ -354,11 +354,11 @@ function _start_server_on_free_port(){
 		done
 
 		#server is running
-		if [ -f "index.html" ]; then
-			open http://127.0.0.1:$PORT/index.html
-		else
-			open http://127.0.0.1:$PORT
-		fi
+		# if [ -f "index.html" ]; then
+			# open http://127.0.0.1:$PORT/index.html
+		# else
+			# open http://127.0.0.1:$PORT
+		# fi
 
 		echo -e "\n${BOLD}${BRIGHT_WHITE} - Press enter to terminate - ${RESET}" &
 	} &
