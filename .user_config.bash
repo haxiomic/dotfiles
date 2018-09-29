@@ -8,14 +8,26 @@ alias d="cd ~/Downloads"
 # haxe
 export HAXE_HOME=/usr/local/lib/haxe
 export NEKO_HOME=/usr/local/lib/neko
-PATH=$PATH:$HAXE_HOME
-PATH=$PATH:$NEKO_HOME
+# PATH=$PATH:$HAXE_HOME
+# PATH=$PATH:$NEKO_HOME
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # firefox development
 export MOZBUILD_STATE_PATH=~/Projects/firefox/mozbuild
+
+# python
+# pip --user packages
+# export PATH="~/Library/Python/3.6/bin:$PATH" 
+# brew python replacement on macOS
+export PATH="/usr/local/opt/python@2/bin:$PATH"
+
+# ruby
+export PATH="/usr/local/opt/ruby@2.3/bin:$PATH"
+
+# ocaml & opam
+test -r /Users/geo/.opam/opam-init/init.sh && . /Users/geo/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 #android
 # export ANDROID_SDK=~/Library/Android/sdk
@@ -100,7 +112,7 @@ function hello-haxe(){
         mkdir src &&
 
         echo -e '-main Main\n-cp src\n--interp' > build.hxml &&
-        echo -e 'class Main{\r\n\r\n\tstatic function main(){\r\n\t\ttrace("Hello '$PROJ_NAME'");\r\n\t}\r\n\r\n}' > src/Main.hx &&
+        echo -e 'class Main {\r\n\r\n\tstatic function main(){\r\n\t\ttrace("Hello '$PROJ_NAME'");\r\n\t}\r\n\r\n}' > src/Main.hx &&
 
         cd ../ &&
         
@@ -115,7 +127,7 @@ alias setHaxeVersion=_set_haxe_version
 function _set_haxe_version(){
     HAXE_PARENT="$(dirname "$HAXE_HOME")"
 
-    FIND_RESULT="`find $HAXE_PARENT -type d -maxdepth 1 -name "haxe-*$1"`"
+    FIND_RESULT="`find $HAXE_PARENT -maxdepth 1 -name "haxe-*$1"`"
     NUM_RESULTS=`echo "$FIND_RESULT" | wc -l`
 
     if [[ $NUM_RESULTS -eq 1 ]] && [[ -n $FIND_RESULT ]] ; then
