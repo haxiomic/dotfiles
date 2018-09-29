@@ -89,6 +89,9 @@ alias gpages='git checkout gh-pages'
 alias gopen=$EXTRA_SCRIPTS_DIR/'git-open'
 alias git-open=$EXTRA_SCRIPTS_DIR/'git-open'
 
+# zip directory while following .gitignore
+alias gitzip="git archive HEAD -o "
+
 
 #Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
