@@ -29,6 +29,9 @@ export PATH="/usr/local/opt/ruby@2.3/bin:$PATH"
 # ocaml & opam
 test -r /Users/geo/.opam/opam-init/init.sh && . /Users/geo/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
+# java
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home"
+
 #android
 # export ANDROID_SDK=~/Library/Android/sdk
 # export ANDROID_NDK=~/Library/Android/ndk
