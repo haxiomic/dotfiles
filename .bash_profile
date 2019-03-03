@@ -19,7 +19,7 @@ fi
 # Open specified files in Sublime Text
 # "s" or s ." will open the current directory in Sublime
 
-_EDITOR_APP_LOCATION="`find /Applications/ -maxdepth 1 -type d -name "$EDITOR_OF_CHOICE"`"
+_EDITOR_APP_LOCATION="`find /Applications/ -maxdepth 1 -type d -name "$EDITOR_OF_CHOICE" -print -quit`"
 
 alias s=_auto_open_editor
 function _auto_open_editor(){
