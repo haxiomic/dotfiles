@@ -8,8 +8,6 @@ alias d="cd ~/Downloads"
 # haxe
 export HAXE_HOME=/usr/local/lib/haxe
 export NEKO_HOME=/usr/local/lib/neko
-# PATH=$PATH:$HAXE_HOME
-# PATH=$PATH:$NEKO_HOME
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -33,8 +31,9 @@ test -r /Users/geo/.opam/opam-init/init.sh && . /Users/geo/.opam/opam-init/init.
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home"
 
 #android
+# export ANDROID_NDK_ROOT=~/SDKs/android/android-ndk-r20
+
 # export ANDROID_SDK=~/Library/Android/sdk
-# export ANDROID_NDK=~/Library/Android/ndk
 # export ANDROID_HOME=$ANDROID_SDK
 # export ANT_HOME=~/Library/Android/apache-ant
 # export OCULUS_SDK_PATH=~/Library/Oculus/ovr_sdk_mobile_1.0.3
@@ -51,15 +50,15 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home
 # PATH=$PATH:$ANDROID_SDK/build-tools/23.0.2
 # PATH=$PATH:$ANDROID_NDK
 # PATH=$PATH:$ANT_HOME/bin
-#npm
-#changes the npm global modules directory
-# export NPM_CONFIG_PREFIX=~/.npm-global
-# PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-#fix npm access issues
-# if [ ! -d $NPM_CONFIG_PREFIX ]; then
-    # mkdir -p $NPM_CONFIG_PREFIX
-    # sudo chown -R $USER ~/.npm
-# fi
+
+# node.js: change the npm global modules directory to fix access issues
+# 
+export NPM_CONFIG_PREFIX=~/.npm-global
+PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+if [ ! -d $NPM_CONFIG_PREFIX ]; then
+    mkdir -p $NPM_CONFIG_PREFIX
+    sudo chown -R $USER ~/.npm
+fi
 
 #C/C++ build environment
 # export CXX="`which clang++`"
@@ -75,7 +74,8 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home
 #chromium build tools (add to start of path), http://www.chromium.org/developers/how-tos/install-depot-tools
 # PATH=/usr/local/lib/depot_tools:$PATH
 
-# export PATH=/usr/local/bin:$PATH
+alias hxr="haxelib run"
+alias nr="npm run"
 
 # Hello Project
 function hello-web(){
@@ -163,3 +163,21 @@ function _set_haxe_version(){
     unset VERSION
     unset FIND_ALL
 }
+
+# run `haxemake watch` to rebuild when files change
+function haxemake(){
+    make --file="$EXTRA_SCRIPTS_DIR/haxemake.mk" $@
+}
+
+if $INSTALL_EXTRA_SCRIPTS; then
+
+    SCRIPT_NAME='haxemake.mk'
+    SCRIPT_URL='https://gist.githubusercontent.com/haxiomic/0d316a34b6ee7adc5f27d4aaeb1ae692/raw/b3e42e4e605f79474d12d8adf56eac914e600161/Haxe%2520Makefile'
+    SCRIPT_SEE='https://gist.github.com/haxiomic/0d316a34b6ee7adc5f27d4aaeb1ae692'
+    install_extra_bash_script "$SCRIPT_NAME" "$SCRIPT_URL" "$SCRIPT_SEE"
+
+    unset SCRIPT_NAME
+    unset SCRIPT_URL
+    unset SCRIPT_SEE
+
+fi

@@ -10,11 +10,6 @@ INSTALL_EXTRA_SCRIPTS=true #enables auto installing and running of extra scripts
 
 ##############################################
 
-# Run user config (overrides default config above)
-if [ -f $HOME/.user_config.bash ] ; then
-	source $HOME/.user_config.bash
-fi
-
 ### Aliases
 # Open specified files in Sublime Text
 # "s" or s ." will open the current directory in Sublime
@@ -495,4 +490,11 @@ if $INSTALL_EXTRA_SCRIPTS; then
 	unset SCRIPT_NAME
 	unset SCRIPT_URL
 	unset SCRIPT_SEE
+fi
+
+
+
+# Run user config (overrides default config above)
+if [ -f $HOME/.user_config.bash ] ; then
+	source $HOME/.user_config.bash
 fi
