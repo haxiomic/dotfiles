@@ -363,7 +363,7 @@ function _start_server_on_free_port(){
 
 	#start server
 	if type live-server >/dev/null 2>&1; then #https://github.com/tapio/live-server
-		live-server . --port $PORT &
+		live-server --port $PORT --ignore=.git,node_modules . &
 
 	elif type npm >/dev/null 2>&1; then
 		read -p "Install tapio/live-server with npm? (Globally) [y/N] " -n 1 -r
@@ -371,7 +371,7 @@ function _start_server_on_free_port(){
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
 		    sudo npm install live-server -g
 
-		    live-server . --port $PORT &
+		    live-server --port $PORT --ignore=.git,node_modules . &
 		fi
 
 	elif type python >/dev/null 2>&1; then
