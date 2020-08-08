@@ -76,6 +76,16 @@ fi
 
 alias hxr="haxelib run"
 alias nr="npm run"
+alias v=_open_in_vscode
+
+# 
+function _open_in_vscode(){
+	if [[ -z "$1" ]] ; then
+		code .
+		return
+	fi
+	code "$1"
+}
 
 # Hello Project
 function hello-web(){
