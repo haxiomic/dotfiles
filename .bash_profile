@@ -85,7 +85,10 @@ alias gopen=$EXTRA_SCRIPTS_DIR/'git-open'
 alias git-open=$EXTRA_SCRIPTS_DIR/'git-open'
 
 # zip directory while following .gitignore
-alias gitzip="git archive HEAD -o "
+# see https://gist.github.com/LeonardoCardoso/6c083b90a8c327d8c82f
+function gitzip() { 
+	git archive HEAD -o ${PWD##*/}.zip
+}
 
 
 #Finder
