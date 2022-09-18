@@ -2,7 +2,7 @@
 
 # fix npm default path, because it doesn't work
 export NPM_CONFIG_PREFIX=~/.npm/global
-PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
 if [ ! -d $NPM_CONFIG_PREFIX ]; then
 	echo "Setting npm global path to $NPM_CONFIG_PREFIX"
 	mkdir -p $NPM_CONFIG_PREFIX
@@ -33,9 +33,11 @@ function haxiomic_install_cli_tools() {
 	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > git-completion.bash
 	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh > git-completion.zsh
 	# git-open
-	npm install -g git-open
+	npm install --global git-open
 	# trash
-	npm install -g trash
+	npm install --global trash-cli
+	# alive-server
+	npm install --global alive-server
 
 	cd ~
 }
@@ -78,6 +80,9 @@ alias d="cd ~/Downloads"
 # Editors
 alias v="code"
 alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+
+# Server
+alias serve="alive-server --ignore=.git,node_modules ."
 
 # Git
 function git_commit_and_push() {
