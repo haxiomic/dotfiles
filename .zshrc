@@ -58,7 +58,13 @@ source ".cli-tools/git-prompt.zsh"
 SAVEHIST=0
 
 # Aliases
-alias o='open'
+function o(){
+	if [[ -z "$1" ]] ; then
+		open .
+		return
+	fi
+	open "$1"
+}
 
 # Quicker navigation
 alias ..="cd .."
@@ -78,8 +84,27 @@ alias p="cd ~/Projects"
 alias d="cd ~/Downloads"
 
 # Editors
-alias v="code"
-alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+# vscode
+function v(){
+	if [[ -z "$1" ]] ; then
+		code .
+		return
+	fi
+	code "$1"
+}
+# sublime
+function s(){
+	if [[ -z "$1" ]] ; then
+		"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" .
+		return
+	fi
+	"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" "$1"
+}
+
+# open editor with the result of a function, usage: si git diff
+function si() {
+	eval $@ | col -b | open -a "/Applications/Sublime Text.app" -f
+}
 
 # Server
 alias serve="alive-server --ignore=.git,node_modules ."
