@@ -1,7 +1,7 @@
 Dotfiles
 ========
 
-.bash_profile and terminal settings tested with OS X **10.7** to **10.11** (< 10.7 doesn't support 256 terminal colors without iTerm2).
+.zsh and terminal settings tested with OS X **10.7** to **12.6** (< 10.7 doesn't support 256 terminal colors without iTerm2).
 Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
 Also includes iTerm2 scheme
@@ -10,16 +10,16 @@ Also includes iTerm2 scheme
 
 ### Installation
 ###### Regular
-- Put the .bash_profile and .inputrc into your home directory (`cd ~`)
+- Put the .zsh and .inputrc into your home directory (`cd ~`)
 - Open the .terminal or .itermcolors file and change profile preferences to set it as the default
 
 
 ###### Sym-linked
-- First deal with your current .bash_profile and .inputrc file by backing up and removing
+- First deal with your current .zsh and .inputrc file by backing up and removing
 - Navigate to where you've cloned the repo and run:
 
 ```bash
-ln -s $(pwd)/.bash_profile $HOME/.bash_profile
+ln -s $(pwd)/.zshrc $HOME/.zshrc
 ln -s $(pwd)/.inputrc $HOME/.inputrc
 ```
 
