@@ -23,15 +23,7 @@ ln -s $(pwd)/.zshrc $HOME/.zshrc
 ln -s $(pwd)/.inputrc $HOME/.inputrc
 ```
 
-- Open the .terminal or .itermcolors file and change profile preferences to set it as the default
-
-
---------
-- If you're me, you should also sym link the *.user_config.bash* file
-```bash
-ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
-```
-(If you're not me: it's designed for my personal setup and may cause issues if there's a conflict on your system)
+- Open the .terminal file and change profile preferences to set it as the default
 
 
 ### Aliases & Features
@@ -65,10 +57,7 @@ ln -sf $(pwd)/.user_config.bash $HOME/.user_config.bash
 - **gopen** - *opens current repository in a browser* [more info](https://github.com/paulirish/git-open/blob/master/git-open)
 
 ###### other
-- **highlight** *\<file\>* - *syntax highlighting in terminal, (requires [pygmentize](http://pygments.org/))*
-- **show** / **hide** - *show/hide hidden files* 
 - **sman** - *open man page with text edtior*
-- **delete_extra_bash_scripts** - *clears auto-installed bash-scripts*
 - **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 
 ### Auto-installed scripts
@@ -82,6 +71,14 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 
 ### Dependencies
 - git
+- node.js/npm
+
+### Sublime style keybindings for Xcode
+Sym link or copy [Sublime.idekeybindings](Sublime.idekeybindings) into `~/Library/Developer/Xcode/UserData/KeyBindings/`
+
+```bash
+ln -s $(pwd)/Sublime.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Sublime.idekeybindings
+```
 
 ### Key bindings iTerm2 (manual entry)
 text-editor style line navigation  
