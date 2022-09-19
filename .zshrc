@@ -78,6 +78,7 @@ alias la="ls -laF" # all files (including dotfiles), in long format
 # Locations
 alias p="cd ~/Projects"
 alias d="cd ~/Downloads"
+alias dk="cd ~/Desktop"
 
 # Editors
 # vscode
