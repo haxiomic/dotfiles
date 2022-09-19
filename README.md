@@ -1,20 +1,12 @@
 Dotfiles
 ========
 
-.zsh and terminal settings tested with OS X **10.7** to **12.6** (< 10.7 doesn't support 256 terminal colors without iTerm2).
-Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
+Tested with OS X **10.7** to **12.6**. Colors based on [ahmetsulek's Flat Terminal](https://github.com/ahmetsulek/flat-terminal)
 
-Also includes iTerm2 scheme
-
-![preview](preview.png)
+![https://user-images.githubusercontent.com/3742992/191121416-f75e515b-da46-4853-ba56-e3c14bbbb789.png](https://user-images.githubusercontent.com/3742992/191121416-f75e515b-da46-4853-ba56-e3c14bbbb789.png)
 
 ### Installation
-###### Regular
-- Put the .zsh and .inputrc into your home directory (`cd ~`)
-- Open the .terminal or .itermcolors file and change profile preferences to set it as the default
 
-
-###### Sym-linked
 - First deal with your current .zsh and .inputrc file by backing up and removing
 - Navigate to where you've cloned the repo and run:
 
@@ -25,10 +17,10 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 
 - Open the .terminal file and change profile preferences to set it as the default
 
-
 ### Aliases & Features
 - **s** - *opens a file in sublime text*
-- **si** *\<cmd\>* - *open the result of a command in sublime text, eg `si git diff`*
+- **si** *\<cmd\>* - *open the result of a command in text editor, eg `si git diff`*
+- **sman** *\<cmd\>* - *open the man page of a command in text editor, eg `sman top`*
 - **o** - *short for open. 'o' opens the current directory in finder* 
 - **l** - *list files in long format*
 - **la** - *list all files including dotfiles, in long format*
@@ -55,10 +47,6 @@ ln -s $(pwd)/.inputrc $HOME/.inputrc
 - **gdiff** - *git diff*
 - **gsetup** *<repo-url>* - *initialises repo with a given url*
 - **gopen** - *opens current repository in a browser* [more info](https://github.com/paulirish/git-open/blob/master/git-open)
-
-###### other
-- **sman** - *open man page with text edtior*
-- **[TAB] Autocomplete is improved with single tab instead of two and case insensitivity**
 
 ### Auto-installed scripts
 
