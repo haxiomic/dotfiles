@@ -96,7 +96,12 @@ function s(){
 
 # open editor with the result of a function, usage: si git diff
 function si() {
-	eval $@ | col -b | open -a "/Applications/Sublime Text.app" -f
+	eval $@ | col -b | open -t -f
+}
+
+# open man page in editor
+function sman() {
+	man $1 | col -b | open -t -f
 }
 
 # Server
