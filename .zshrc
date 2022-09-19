@@ -1,4 +1,4 @@
-# Haxiomic's ZSH Terminal (automatically installs dependencies)
+# Haxiomic's ZSH Terminal (automatically installs dependencies on first run)
 
 # fix npm default path, because it doesn't work
 export NPM_CONFIG_PREFIX=~/.npm/global
@@ -59,11 +59,7 @@ SAVEHIST=0
 
 # Aliases
 function o(){
-	if [[ -z "$1" ]] ; then
-		open .
-		return
-	fi
-	open "$1"
+	[ -z "$1" ] && open . || open "$1"
 }
 
 # Quicker navigation
@@ -86,11 +82,7 @@ alias d="cd ~/Downloads"
 # Editors
 # vscode
 function v(){
-	if [[ -z "$1" ]] ; then
-		code .
-		return
-	fi
-	code "$1"
+	[ -z "$1" ] && code . || code "$1"
 }
 # sublime
 function s(){
