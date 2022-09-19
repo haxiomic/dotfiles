@@ -62,7 +62,7 @@ Additional scripts installed into ~/.bash_scripts/ on first run
 - node.js/npm
 
 ### Sublime style keybindings for Xcode
-Sym link or copy [Sublime.idekeybindings](Sublime.idekeybindings) into `~/Library/Developer/Xcode/UserData/KeyBindings/`
+Symlink or copy [Sublime.idekeybindings](Sublime.idekeybindings) into `~/Library/Developer/Xcode/UserData/KeyBindings/`
 
 ```bash
 ln -s $(pwd)/Sublime.idekeybindings ~/Library/Developer/Xcode/UserData/KeyBindings/Sublime.idekeybindings
