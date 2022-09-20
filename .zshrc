@@ -13,6 +13,10 @@ if [ ! -d $NPM_CONFIG_PREFIX ]; then
 	sudo chown -R $USER ~/.npm
 fi
 
+# Paths
+export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 # Setup
 function haxiomic_install_cli_tools() {
 	echo "Haxiomic dotfiles: Installing CLI tools"
@@ -58,9 +62,6 @@ zstyle ':completion:*:*:git:*' script $HOME/.cli-tools/git-completion.bash
 source "$HOME/.cli-tools/zsh-z.plugin.zsh"
 source "$HOME/.cli-tools/git-prompt.zsh"
 
-# ZSH Settings
-SAVEHIST=0
-
 # Aliases
 function o(){
 	[ -z "$1" ] && open . || open "$1"
@@ -82,6 +83,7 @@ alias la="ls -laF" # all files (including dotfiles), in long format
 # Locations
 alias p="cd ~/Projects"
 alias d="cd ~/Downloads"
+alias h="cd ~"
 alias dk="cd ~/Desktop"
 
 # Editors
@@ -91,11 +93,7 @@ function v(){
 }
 # sublime
 function s(){
-	if [[ -z "$1" ]] ; then
-		"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" .
-		return
-	fi
-	"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" "$1"
+	[ -z "$1" ] && subl . || subl "$1"
 }
 
 # open editor with the result of a function, usage: si git diff
