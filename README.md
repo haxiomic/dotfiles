@@ -12,6 +12,7 @@ Tested with OS X **10.7** to **12.6**. Colors based on [ahmetsulek's Flat Termin
 
 ```bash
 ln -s $(pwd)/.zshrc $HOME/.zshrc
+ln -s $(pwd)/.gitignore $HOME/.gitignore
 ```
 
 - Open the .terminal file and change profile preferences to set it as the default
