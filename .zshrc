@@ -55,8 +55,8 @@ fi
 fpath=($HOME/.cli-tools $fpath)
 zstyle ':completion:*:*:git:*' script $HOME/.cli-tools/git-completion.bash
 # other scripts
-source ".cli-tools/zsh-z.plugin.zsh"
-source ".cli-tools/git-prompt.zsh"
+source "$HOME/.cli-tools/zsh-z.plugin.zsh"
+source "$HOME/.cli-tools/git-prompt.zsh"
 
 # ZSH Settings
 SAVEHIST=0
