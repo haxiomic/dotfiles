@@ -7,12 +7,11 @@ Tested with OS X **10.7** to **12.6**. Colors based on [ahmetsulek's Flat Termin
 
 ### Installation
 
-- First deal with your current .zsh and .inputrc file by backing up and removing
+- First deal with your current .zsh file by backing up and removing if you have one
 - Navigate to where you've cloned the repo and run:
 
 ```bash
 ln -s $(pwd)/.zshrc $HOME/.zshrc
-ln -s $(pwd)/.inputrc $HOME/.inputrc
 ```
 
 - Open the .terminal file and change profile preferences to set it as the default
