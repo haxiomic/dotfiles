@@ -1,5 +1,9 @@
 # Haxiomic's ZSH Terminal (automatically installs dependencies on first run)
 
+autoload -Uz compinit && compinit
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
 # fix npm default path, because it doesn't work
 export NPM_CONFIG_PREFIX=~/.npm/global
 export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
@@ -11,7 +15,8 @@ fi
 
 # Setup
 function haxiomic_install_cli_tools() {
-	echo "Installing CLI tools"
+	echo "Haxiomic dotfiles: Installing CLI tools"
+
 	# check if npm is installed
 	if ! command -v npm &> /dev/null
 	then
@@ -41,15 +46,14 @@ function haxiomic_install_cli_tools() {
 
 	cd ~
 }
-if [ ! -d ".cli-tools" ]; then
+if [ ! -d "$HOME/.cli-tools" ]; then
 	haxiomic_install_cli_tools
 fi
 
 # Tools
 # git-completion https://www.oliverspryn.com/blog/adding-git-completion-to-zsh
-fpath=(~/.cli-tools $fpath)
-zstyle ':completion:*:*:git:*' script ~/.cli-tools/git-completion.bash
-autoload -Uz compinit && compinit
+fpath=($HOME/.cli-tools $fpath)
+zstyle ':completion:*:*:git:*' script $HOME/.cli-tools/git-completion.bash
 # other scripts
 source ".cli-tools/zsh-z.plugin.zsh"
 source ".cli-tools/git-prompt.zsh"
