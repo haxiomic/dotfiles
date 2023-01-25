@@ -78,6 +78,7 @@ alias gcap=git_commit_and_push
 alias gpush='git push'
 alias gpull='git pull'
 alias gdiff='git diff'
+alias gk='git checkout'
 alias gsetup=git_quick_setup
 alias gmaster='git checkout master'
 alias gpages='git checkout gh-pages'

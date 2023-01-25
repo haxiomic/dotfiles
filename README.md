@@ -45,6 +45,7 @@ ln -s $(pwd)/.gitignore $HOME/.gitignore
 - **gpush** - *git push*
 - **gpull** - *git pull*
 - **gdiff** - *git diff*
+- **gk** - *git checkout*
 - **gsetup** *<repo-url>* - *initialises repo with a given url*
 - **gopen** - *opens current repository in a browser* [more info](https://github.com/paulirish/git-open/blob/master/git-open)
 

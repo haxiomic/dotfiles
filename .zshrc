@@ -127,6 +127,7 @@ alias gpush='git push'
 alias gpull='git pull'
 alias gdiff='git diff'
 alias gopen='git-open' # npm install -g git-open
+alias gk='git checkout'
 # zip directory while following .gitignore
 # see https://gist.github.com/LeonardoCardoso/6c083b90a8c327d8c82f
 function gitzip() { 
