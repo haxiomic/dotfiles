@@ -110,7 +110,7 @@ function sman() {
 alias serve="alive-server --ignore=.git,node_modules ."
 
 # Git
-function git_commit_and_push() {
+function git-commit-and-push() {
 	if [[ -z "$1" ]] ; then
 		echo -e "${WHITE}Empty commit message${RESET}"
 		return
@@ -119,20 +119,39 @@ function git_commit_and_push() {
 	git push
 }
 
+function git-reset-to-remote() {
+	# ask for confirmation
+	if read -q "choice?Resetting to remote branch. Are you sure? (Y/y)"; then
+		echo ""
+		echo ""
+		git reset --hard $(git remote)/$(git branch --show-current)
+	else
+		echo ""
+		echo -e "Aborted"
+	fi
+}
+
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m' # requires you to type a commit message
-alias gcap=git_commit_and_push
+alias gcap=git-commit-and-push
 alias gpush='git push'
 alias gpull='git pull'
 alias gdiff='git diff'
 alias gopen='git-open' # npm install -g git-open
 alias gk='git checkout'
+alias gsubmodules='git submodule update --init --recursive'
 # zip directory while following .gitignore
 # see https://gist.github.com/LeonardoCardoso/6c083b90a8c327d8c82f
 function gitzip() { 
 	git archive HEAD -o ${PWD##*/}.zip
 }
+
+# n for npm
+alias n='npm'
+alias nbuild='n run build'
+alias nstart='n run start'
+alias ndev='n run dev'
 
 # git-prompt setup
 # see https://github.com/woefe/git-prompt.zsh/blob/master/examples/compact.zsh
