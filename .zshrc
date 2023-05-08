@@ -131,6 +131,7 @@ function git-reset-to-remote() {
 	fi
 }
 
+alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit -m' # requires you to type a commit message
@@ -149,6 +150,7 @@ function gitzip() {
 
 # n for npm
 alias n='npm'
+alias nr='npm run'
 alias nbuild='n run build'
 alias nstart='n run start'
 alias ndev='n run dev'
