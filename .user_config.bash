@@ -30,6 +30,12 @@ test -r /Users/geo/.opam/opam-init/init.sh && . /Users/geo/.opam/opam-init/init.
 # java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/geo/SDKs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/geo/SDKs/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc'; fi
+
 #android
 # export ANDROID_NDK_ROOT=~/SDKs/android/android-ndk-r20
 
@@ -75,7 +81,6 @@ fi
 # PATH=/usr/local/lib/depot_tools:$PATH
 
 alias hxr="haxelib run"
-alias nr="npm run"
 alias v=_open_in_vscode
 
 # 
