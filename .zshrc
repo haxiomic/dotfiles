@@ -142,15 +142,30 @@ alias gdiff='git diff'
 alias gopen='git-open' # npm install -g git-open
 alias gk='git checkout'
 alias gsubmodules='git submodule update --init --recursive'
+alias greset=git-reset-to-remote
 # zip directory while following .gitignore
 # see https://gist.github.com/LeonardoCardoso/6c083b90a8c327d8c82f
 function gitzip() { 
 	git archive HEAD -o ${PWD##*/}.zip
 }
 
-# n for npm
-alias n='npm'
-alias nr='npm run'
+# n for npm/pnpm/yarn
+function n() {
+	if [ -f "yarn.lock" ]; then
+		# echo white bold "yarn"
+		echo "\e[1;37m> [yarn] <\e[0m"
+		yarn $@
+	elif [ -f "pnpm-lock.yaml" ]; then
+		echo "\e[1;37m> [pnpm] <\e[0m"
+		pnpm $@
+	else
+		echo "\e[1;37m> [npm] <\e[0m"
+		npm $@
+	fi
+}
+
+alias nr='n run'
+alias ni='n i'
 alias nbuild='n run build'
 alias nstart='n run start'
 alias ndev='n run dev'
