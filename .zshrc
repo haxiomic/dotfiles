@@ -164,6 +164,15 @@ function n() {
 	fi
 }
 
+# randomizes mac address
+# this will reset after restart
+# may fail with "cannot assign address", try turning it on and off again
+function random-mac() {
+	MAC=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
+	sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -z
+	sudo ifconfig en0 ether "$MAC" && echo "new MAC $MAC"
+}
+
 alias nr='n run'
 alias ni='n i'
 alias nbuild='n run build'
