@@ -143,6 +143,7 @@ alias gopen='git-open' # npm install -g git-open
 alias gk='git checkout'
 alias gsubmodules='git submodule update --init --recursive'
 alias greset=git-reset-to-remote
+alias guncommit='git reset --soft HEAD^'
 # zip directory while following .gitignore
 # see https://gist.github.com/LeonardoCardoso/6c083b90a8c327d8c82f
 function gitzip() { 
@@ -203,3 +204,10 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔"
 PROMPT='%B%40<..<%~%b$(gitprompt)'
 PROMPT+='%(?.%(!.%F{yellow}.%F{cyan}).%F{red}) ❯%f '
 RPROMPT=''
+
+# tmp
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/geo/SDKs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/geo/SDKs/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc'; fi
