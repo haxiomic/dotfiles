@@ -4,14 +4,19 @@ autoload -Uz compinit && compinit
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # fix npm default path, because it doesn't work
-export NPM_CONFIG_PREFIX=~/.npm/global
-export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-if [ ! -d $NPM_CONFIG_PREFIX ]; then
-	echo "Setting npm global path to $NPM_CONFIG_PREFIX"
-	mkdir -p $NPM_CONFIG_PREFIX
-	sudo chown -R $USER ~/.npm
-fi
+# export NPM_CONFIG_PREFIX=~/.npm/global
+# export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+# if [ ! -d $NPM_CONFIG_PREFIX ]; then
+# 	echo "Setting npm global path to $NPM_CONFIG_PREFIX"
+# 	mkdir -p $NPM_CONFIG_PREFIX
+# 	sudo chown -R $USER ~/.npm
+# fi
 
 # Paths
 export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
@@ -85,6 +90,16 @@ alias p="cd ~/Projects"
 alias d="cd ~/Downloads"
 alias h="cd ~"
 alias dk="cd ~/Desktop"
+
+# Languages
+alias py="python3"
+alias python="python3"
+
+# Touch python venv, no name needed
+function venv() {
+	python3 -m venv .venv
+	source .venv/bin/activate
+}
 
 # Editors
 # vscode
@@ -175,7 +190,7 @@ function random-mac() {
 }
 
 alias nr='n run'
-alias ni='n i'
+alias ni='n install'
 alias nbuild='n run build'
 alias nstart='n run start'
 alias ndev='n run dev'
@@ -211,3 +226,17 @@ if [ -f '/Users/geo/SDKs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/geo/SD
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc'; fi
+# pnpm
+export PNPM_HOME="/Users/george/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# AI
+alias claude-fun="claude --dangerously-skip-permissions"
+alias cf="claude-fun"
+. "$HOME/.local/bin/env"
+
+export ANTHROPIC_MODEL="claude-opus-4-1-20250805"

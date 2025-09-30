@@ -4,6 +4,8 @@ PROJECTS="$HOME/Projects"
 
 alias p="cd $PROJECTS"
 alias d="cd ~/Downloads"
+alias claude-fun="claude --dangerously-skip-permissions"
+alias cf="claude-fun"
 
 # haxe
 export HAXE_HOME=/usr/local/lib/haxe
@@ -59,12 +61,12 @@ if [ -f '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 
 # node.js: change the npm global modules directory to fix access issues
 # 
-export NPM_CONFIG_PREFIX=~/.npm-global
-PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-if [ ! -d $NPM_CONFIG_PREFIX ]; then
-    mkdir -p $NPM_CONFIG_PREFIX
-    sudo chown -R $USER ~/.npm
-fi
+# export NPM_CONFIG_PREFIX=~/.npm-global
+# PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+# if [ ! -d $NPM_CONFIG_PREFIX ]; then
+#     mkdir -p $NPM_CONFIG_PREFIX
+#     sudo chown -R $USER ~/.npm
+# fi
 
 #C/C++ build environment
 # export CXX="`which clang++`"
