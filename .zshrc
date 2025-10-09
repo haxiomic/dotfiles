@@ -238,5 +238,5 @@ esac
 alias claude-fun="claude --dangerously-skip-permissions"
 alias cf="claude-fun"
 . "$HOME/.local/bin/env"
-
-export ANTHROPIC_MODEL="claude-opus-4-1-20250805"
+# default model
+# export ANTHROPIC_MODEL="claude-opus-4-1-20250805"
