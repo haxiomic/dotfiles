@@ -175,7 +175,7 @@ function random-mac() {
 }
 
 alias nr='n run'
-alias ni='n i'
+alias ni='n install'
 alias nbuild='n run build'
 alias nstart='n run start'
 alias ndev='n run dev'
@@ -211,3 +211,32 @@ if [ -f '/Users/geo/SDKs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/geo/SD
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/geo/SDKs/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+export DENO_INSTALL="/Users/geo/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+
+# pnpm
+export PNPM_HOME="/Users/geo/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
