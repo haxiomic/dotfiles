@@ -259,3 +259,7 @@ esac
 # AI
 alias claude-fun="claude --dangerously-skip-permissions"
 alias cf="claude-fun"
+
+
+# private
+source ~/.zshrc_private
