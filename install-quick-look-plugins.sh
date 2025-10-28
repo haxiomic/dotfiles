@@ -3,11 +3,11 @@ if ! [ -x "$(command -v brew)" ]; then
 	exit 1
 fi
 
-brew cask install qlcolorcode # syntax highlighting
-brew cask install qlstephen # plain text files
-brew cask install qlmarkdown # markdown
-brew cask install gltfquicklook # gltf
-brew cask install qlprettypatch # .patch files
+brew install qlcolorcode --cask  # syntax highlighting
+brew install qlstephen --cask  # plain text files
+brew install qlmarkdown --cask  # markdown
+brew install gltfquicklook --cask  # gltf
+brew install qlprettypatch --cask  # .patch files
 
 # more
 # quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize suspicious-package

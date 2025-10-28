@@ -4,14 +4,19 @@ autoload -Uz compinit && compinit
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # fix npm default path, because it doesn't work
-export NPM_CONFIG_PREFIX=~/.npm/global
-export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-if [ ! -d $NPM_CONFIG_PREFIX ]; then
-	echo "Setting npm global path to $NPM_CONFIG_PREFIX"
-	mkdir -p $NPM_CONFIG_PREFIX
-	sudo chown -R $USER ~/.npm
-fi
+# export NPM_CONFIG_PREFIX=~/.npm/global
+# export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+# if [ ! -d $NPM_CONFIG_PREFIX ]; then
+# 	echo "Setting npm global path to $NPM_CONFIG_PREFIX"
+# 	mkdir -p $NPM_CONFIG_PREFIX
+# 	sudo chown -R $USER ~/.npm
+# fi
 
 # Paths
 export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
@@ -85,6 +90,16 @@ alias p="cd ~/Projects"
 alias d="cd ~/Downloads"
 alias h="cd ~"
 alias dk="cd ~/Desktop"
+
+# Languages
+alias py="python3"
+alias python="python3"
+
+# Touch python venv, no name needed
+function venv() {
+	python3 -m venv .venv
+	source .venv/bin/activate
+}
 
 # Editors
 # vscode
@@ -240,3 +255,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# AI
+alias claude-fun="claude --dangerously-skip-permissions"
+alias cf="claude-fun"
+. "$HOME/.local/bin/env"
