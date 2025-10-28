@@ -12,7 +12,7 @@ Tested with OS X **10.7** to **12.6**. Colors based on [ahmetsulek's Flat Termin
 
 ```bash
 ln -s $(pwd)/.zshrc $HOME/.zshrc
-ln -s $(pwd)/.zshrc-private $HOME/.zshrc_private
+ln -s $(pwd)/.zshrc_private $HOME/.zshrc_private
 ln -s $(pwd)/.gitignore $HOME/.gitignore
 ```
 
