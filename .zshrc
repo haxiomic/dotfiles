@@ -259,4 +259,3 @@ esac
 # AI
 alias claude-fun="claude --dangerously-skip-permissions"
 alias cf="claude-fun"
-. "$HOME/.local/bin/env"
