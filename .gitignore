@@ -5,7 +5,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -21,3 +20,10 @@ Temporary Items
 .apdisk
 
 .zshrc_private
+
+# Node
+node_modules
+# Python
+.venv
+venv
+__pycache__
